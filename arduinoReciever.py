@@ -9,12 +9,7 @@ import serial # Module needed for serial communication
 ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
  
 # Initialize 6 integers
-servo_0_angle = 90
-servo_1_angle = 90
-servo_2_angle = 90
-servo_3_angle = 90
-servo_4_angle = 90
-servo_5_angle = 90
+finger0 = 0
  
 # Infinite loop
 while (1):
@@ -35,8 +30,8 @@ while (1):
   # We know we need to receive 6 integers. This code helps with any loss
   # of data that might happen as data is transferred between Arduino
   # and the Raspberry Pi.
-  if(len(parsed) > 5):
-    print(parsed)
+  if(len(parsed) > 0):
+    #print(parsed)
        
     # We add the '0' character to the end of each item in the 
     # parsed list. This makes sure that there are no empty
@@ -44,19 +39,17 @@ while (1):
     # at least 6 string values we can convert into integers.
     # Dividing by 10 removes the trailing 0 but it makes the integer a float.
     # We then have to convert the float to an integer.
-    servo_0_angle = int(int(parsed[0]+'0')/10)
-    servo_1_angle = int(int(parsed[1]+'0')/10)
-    servo_2_angle = int(int(parsed[2]+'0')/10)
-    servo_3_angle = int(int(parsed[3]+'0')/10)
-    servo_4_angle = int(int(parsed[4]+'0')/10)
-    servo_5_angle = int(int(parsed[5]+'0')/10)
-  print("Servo 0 Angle: " + str(servo_0_angle))
-  print("Servo 1 Angle: " + str(servo_1_angle))
-  print("Servo 2 Angle: " + str(servo_2_angle))
-  print("Servo 3 Angle: " + str(servo_3_angle))
-  print("Servo 4 Angle: " + str(servo_4_angle))
-  print("Servo 5 Angle: " + str(servo_5_angle))
+    finger0 = int(parsed[0])
+    #servo_1_angle = int(int(parsed[1]+'0')/10)
+    #servo_2_angle = int(int(parsed[2]+'0')/10)
+    #servo_3_angle = int(int(parsed[3]+'0')/10)
+    #servo_4_angle = int(int(parsed[4]+'0')/10)
+    #servo_5_angle = int(int(parsed[5]+'0')/10)
+  print("Finger0: " + str(finger0))
+  #print("Servo 1 Angle: " + str(servo_1_angle))
+  #print("Servo 2 Angle: " + str(servo_2_angle))
+  #print("Servo 3 Angle: " + str(servo_3_angle))
+  #print("Servo 4 Angle: " + str(servo_4_angle))
+  #print("Servo 5 Angle: " + str(servo_5_angle))
      
-  # This line proves that we have successfully converted the strings
-  # to integers.
-  print("Sum of Servos 0 and 1: " + str(servo_0_angle + servo_1_angle))
+  
