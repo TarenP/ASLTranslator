@@ -8,8 +8,17 @@ import serial # Module needed for serial communication
 # of input.
 ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
  
-# Initialize 6 integers
 finger0 = 0
+finger1 = 0
+finger2 = 0
+finger3 = 0
+finger4 = 0
+ax = 0
+ay = 0
+az = 0
+gx = 0
+gy = 0
+gz = 0
  
 # Infinite loop
 while (1):
@@ -21,17 +30,17 @@ while (1):
  
   # Take out the commas. Parse the string into a list.
   parsed = line.split(',')
-     
+
   # rstrip() function removes trailing characters like
   # the new line character '\n' and '/r'. Also removes
   # white space.
   parsed = [x.rstrip() for x in parsed]
-     
+
   # We know we need to receive 6 integers. This code helps with any loss
   # of data that might happen as data is transferred between Arduino
   # and the Raspberry Pi.
-  if(len(parsed) > 0):
-    #print(parsed)
+  if(len(parsed) > 9):
+    print(parsed)
        
     # We add the '0' character to the end of each item in the 
     # parsed list. This makes sure that there are no empty
@@ -39,17 +48,15 @@ while (1):
     # at least 6 string values we can convert into integers.
     # Dividing by 10 removes the trailing 0 but it makes the integer a float.
     # We then have to convert the float to an integer.
-    finger0 = int(parsed[0])
-    #servo_1_angle = int(int(parsed[1]+'0')/10)
-    #servo_2_angle = int(int(parsed[2]+'0')/10)
-    #servo_3_angle = int(int(parsed[3]+'0')/10)
-    #servo_4_angle = int(int(parsed[4]+'0')/10)
-    #servo_5_angle = int(int(parsed[5]+'0')/10)
-  print("Finger0: " + str(finger0))
-  #print("Servo 1 Angle: " + str(servo_1_angle))
-  #print("Servo 2 Angle: " + str(servo_2_angle))
-  #print("Servo 3 Angle: " + str(servo_3_angle))
-  #print("Servo 4 Angle: " + str(servo_4_angle))
-  #print("Servo 5 Angle: " + str(servo_5_angle))
-     
-  
+    finger0 = parsed[0]
+    finger1 = parsed[1]
+    finger2 = parsed[2]
+    finger3 = parsed[3]
+    finger4 = parsed[4]
+    ax = parsed[5]
+    ay = parsed[6]
+    az = parsed[7]
+    gx = parsed[8]
+    gy = parsed[9]
+    gz = parsed[10]
+    
