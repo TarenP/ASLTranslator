@@ -1,24 +1,40 @@
-int servo_0_angle = 90;
-int servo_1_angle = 7;
-int servo_2_angle = 63;
-int servo_3_angle = 85;
-int servo_4_angle = 162;
-int servo_5_angle = 45;
+#include <Arduino_LSM6DSOX.h>
+const int flexPin = A0;
+
+
+//Variables:
+int value; //save analog value
+float gx, gy, gz;
+float ax, ay, az;
  
 void setup(){
    
   // Set the baud rate  
   Serial.begin(9600);
-   
+  if (!IMU.begin()) {
+    Serial.println("Failed to initialize IMU!");
+    while (1);
+  }
 }
  
 void loop(){
-   
-  Serial.print(servo_0_angle); Serial.print(",");
-  Serial.print(servo_1_angle); Serial.print(",");
-  Serial.print(servo_2_angle); Serial.print(",");
-  Serial.print(servo_3_angle); Serial.print(",");
-  Serial.print(servo_4_angle); Serial.print(",");
-  Serial.println(servo_5_angle); 
-  delay(500);
+  if (IMU.accelerationAvailable()) {
+    IMU.readAcceleration(ax, ay, az);
+  }
+  if (IMU.gyroscopeAvailable()) {
+    IMU.readGyroscope(gx, gy, gz);
+  }
+  Serial.println(",");
+  Serial.print(analogRead(flexPin)); Serial.print(",");
+  Serial.print(analogRead(flexPin)); Serial.print(",");
+  Serial.print(analogRead(flexPin)); Serial.print(",");
+  Serial.print(analogRead(flexPin)); Serial.print(",");
+  Serial.print(analogRead(flexPin)); Serial.print(",");
+  Serial.print(ax*10); Serial.print(",");
+  Serial.print(ay*10); Serial.print(",");
+  Serial.print(az*10); Serial.print(",");
+  Serial.print(gx*10); Serial.print(",");
+  Serial.print(gy*10); Serial.print(",");
+  Serial.print(gz*10);
+  delay(100);
 }
