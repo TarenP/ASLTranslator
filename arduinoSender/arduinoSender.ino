@@ -24,16 +24,17 @@ void loop(){
   if (IMU.gyroscopeAvailable()) {
     IMU.readGyroscope(gx, gy, gz);
   }
-  Serial.println(analogRead(flexPin));
+  Serial.println(",");
   Serial.print(analogRead(flexPin)); Serial.print(",");
   Serial.print(analogRead(flexPin)); Serial.print(",");
   Serial.print(analogRead(flexPin)); Serial.print(",");
   Serial.print(analogRead(flexPin)); Serial.print(",");
-  Serial.print(ax); Serial.print(",");
-  Serial.print(ay); Serial.print(",");
-  Serial.print(az); Serial.print(",");
-  Serial.print(gx); Serial.print(",");
-  Serial.print(gy); Serial.print(",");
-  Serial.print(gz);
+  Serial.print(analogRead(flexPin)); Serial.print(",");
+  Serial.print(ax*10); Serial.print(",");
+  Serial.print(ay*10); Serial.print(",");
+  Serial.print(az*10); Serial.print(",");
+  Serial.print(gx*10); Serial.print(",");
+  Serial.print(gy*10); Serial.print(",");
+  Serial.print(gz*10);
   delay(100);
 }
