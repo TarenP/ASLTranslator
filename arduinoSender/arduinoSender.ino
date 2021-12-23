@@ -1,9 +1,6 @@
 #include <Arduino_LSM6DSOX.h>
-const int flexPin = A0;
+#include <WiFiNINA.h>
 
-
-//Variables:
-int value; //save analog value
 float gx, gy, gz;
 float ax, ay, az;
  
@@ -11,6 +8,7 @@ void setup(){
    
   // Set the baud rate  
   Serial.begin(9600);
+  pinMode(18, INPUT);
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
     while (1);
@@ -25,11 +23,11 @@ void loop(){
     IMU.readGyroscope(gx, gy, gz);
   }
   Serial.println(",");
-  Serial.print(analogRead(flexPin)); Serial.print(",");
-  Serial.print(analogRead(flexPin)); Serial.print(",");
-  Serial.print(analogRead(flexPin)); Serial.print(",");
-  Serial.print(analogRead(flexPin)); Serial.print(",");
-  Serial.print(analogRead(flexPin)); Serial.print(",");
+  Serial.print(analogRead(A0)); Serial.print(",");
+  Serial.print(analogRead(A1)); Serial.print(",");
+  Serial.print(analogRead(A2)); Serial.print(",");
+  Serial.print(analogRead(A3)); Serial.print(",");
+  Serial.print(analogRead(18)); Serial.print(",");
   Serial.print(ax*10); Serial.print(",");
   Serial.print(ay*10); Serial.print(",");
   Serial.print(az*10); Serial.print(",");
