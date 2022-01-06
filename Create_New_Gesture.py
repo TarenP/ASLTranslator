@@ -15,7 +15,7 @@ num = 20
 gesture = []
 data = []
 def main():
-    num = input("Enter the amount of gesture repetitions(suggested amount is 20):\n")
+    num = input("Enter the amount of gesture trials(suggested amount is 20):\n")
     num = int(num)
     name = input("What is the English translation of the gesture:\n")
     with open("Gesture_Database/" + str(name) +".csv", 'w', newline='', encoding='UTF8') as f:
