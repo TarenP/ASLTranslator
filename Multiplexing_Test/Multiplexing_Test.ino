@@ -6,11 +6,9 @@ SparkFun Multiplexer Analog Input Example
 Jim Lindblom @ SparkFun Electronics
 August 15, 2016
 https://github.com/sparkfun/74HC4051_8-Channel_Mux_Breakout
-
 This sketch demonstrates how to use the SparkFun Multiplexer
 Breakout - 8 Channel (74HC4051) to read eight, separate
 analog inputs, using just a single ADC channel.
-
 Hardware Hookup:
 Mux Breakout ----------- Arduino
      S0 ------------------- 2
@@ -20,11 +18,9 @@ Mux Breakout ----------- Arduino
     VCC ------------------- 5V
     GND ------------------- GND
     (VEE should be connected to GND)
-
 The multiplexers independent I/O (Y0-Y7) can each be wired
 up to a potentiometer or any other analog signal-producing
 component.
-
 Development environment specifics:
 Arduino 1.6.9
 SparkFun Multiplexer Breakout - 8-Channel(74HC4051) v10
