@@ -8,7 +8,6 @@ void setup(){
    
   // Set the baud rate  
   Serial.begin(9600);
-  pinMode(18, INPUT);
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
     while (1);
@@ -27,7 +26,6 @@ void loop(){
   Serial.print(analogRead(A1)); Serial.print(",");
   Serial.print(analogRead(A2)); Serial.print(",");
   Serial.print(analogRead(A3)); Serial.print(",");
-  Serial.print(analogRead(A6)); Serial.print(",");
   Serial.print(ax*10); Serial.print(",");
   Serial.print(ay*10); Serial.print(",");
   Serial.print(az*10); Serial.print(",");
