@@ -22,15 +22,13 @@ def main():
     num = input("Enter the amount of gesture trials(suggested amount is 20):\n")
     num = int(num)
     name = input("What is the English translation of the gesture:\n")
-    with open("Gesture_Database/" + str(name) +".csv", 'w', newline='', encoding='UTF8') as f:
-        # create the csv writer
-        writer = csv.writer(f)
-        
-        for i in range(num):
+    for i in range(num):
+        with open("Gesture_Database/" + str(name) + str(i) +".csv", 'w', newline='', encoding='UTF8') as f:
+            # create the csv writer
+            writer = csv.writer(f)
+            
             Button()
             Record(writer)
-    reader = csv.reader(open("Gesture_Database/" + str(name) +".csv"))
-    no_lines = len(list(reader))
     
             
 
