@@ -10,7 +10,7 @@ import time
 import numpy as np
 
 #Store the sensor data
-data = ([])
+data = np.array([])
 
 
 #Serial Addresses
