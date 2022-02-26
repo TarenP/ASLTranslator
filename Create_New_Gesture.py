@@ -7,9 +7,11 @@ import csv
 import serial
 import RPi.GPIO as GPIO
 import time
+import numpy as np
 
 #Store the sensor data
-data = []
+data = ([])
+
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -30,10 +32,7 @@ def main():
             Record(writer)
     reader = csv.reader(open("Gesture_Database/" + str(name) +".csv"))
     no_lines = len(list(reader))
-    with open("Gesture_Database/" + str(name) +".csv") as f:
-        for line,_ in zip(f, range(50)):
-            pass
-        lines = [line for line,_ in zip(f, range(10))]
+    
             
 
 #Return True when button is pressed
@@ -208,7 +207,9 @@ def Record(writer):
                         gy = parsed2[9]
                         gz = parsed2[10]
                         button = parsed1[1]
-                    data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz]
+                    dataR = np.array([finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz])
+                    data = np.vstack([data, dataR])
+                    print(data)
                     # write a row to the csv file
                     writer.writerow(data)
                     if (button == 'H'):
