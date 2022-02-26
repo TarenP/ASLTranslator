@@ -10,7 +10,7 @@ import time
 import numpy as np
 
 #Store the sensor data
-data = np.array([0])
+data = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 dataA = np.array([])
 
 
