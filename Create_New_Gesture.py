@@ -10,7 +10,6 @@ import time
 import pandas as pd
 
 #Store the sensor data
-gesture = []
 data = []
 
 #Serial Addresses
