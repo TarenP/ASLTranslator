@@ -71,8 +71,11 @@ def record(writer):
                 button = parsed2[1]
             except:
                 button = parsed1[1]
-        if(button ==1): # If button has been pressed
-            break
+        try:
+            if(button ==1): # If button has been pressed
+                break
+        except:
+            pass
     if (button == 0): #wait till button is not pressed
         while True:
             line1=ser1.readline().decode()
