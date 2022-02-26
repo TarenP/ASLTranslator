@@ -7,11 +7,7 @@ import csv
 import serial
 import RPi.GPIO as GPIO
 import time
-import itertools
-import os
 
-#num is the suggested amount of data points we want
-num = 20
 #Store the sensor data
 gesture = []
 data = []
@@ -26,28 +22,15 @@ def main():
     num = input("Enter the amount of gesture trials(suggested amount is 20):\n")
     num = int(num)
     name = input("What is the English translation of the gesture:\n")
-    with open("Gesture_Database/" + str(name) +"in" +".csv", 'r', newline='', encoding='UTF8') as f_in, \
-        open("Gesture_Database/" + str(name) +".csv", 'a', newline='', encoding='UTF8') as f_out, \
-        open("Gesture_Database/" + str(name) + "temp" +".csv", 'w', newline='', encoding='UTF8') as f_temp:
+    with open("Gesture_Database/" + str(name) +".csv", 'w', newline='', encoding='UTF8') as f:
         # create the csv writer
-        writer = csv.writer(f_in)
-        csv_input = csv.reader(f_in)
+        writer = csv.writer(f)
         
         for i in range(num):
             Button()
             Record(writer)
-
-
-    # Append first 50 rows to file_out
-    csv.writer(f_out).writerows(itertools.islice(csv_input, 0, 50))
-
-    # Write the remaining rows from file_in to file_temp
-    csv.writer(f_temp).writerows(csv_input)
-
-    # Rename f_temp to file_in, first remove existing file_in then rename temp file
-    os.remove("Gesture_Database/" + str(name) +"in" +".csv")
-    os.rename("Gesture_Database/" + str(name) + "temp" +".csv", "Gesture_Database/" + str(name) +"in" +".csv")
-        
+    reader = csv.reader(open("Gesture_Database/" + str(name) +".csv"))
+    no_lines = len(list(reader))
     
             
 
