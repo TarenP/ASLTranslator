@@ -10,7 +10,8 @@ import time
 import numpy as np
 
 #Store the sensor data
-data = np.array([])
+data = np.array([0])
+dataA = np.array([])
 
 
 #Serial Addresses
@@ -208,8 +209,8 @@ def Record(writer):
                         gz = parsed2[10]
                         button = parsed1[1]
                     dataR = np.array([finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz])
-                    data = np.vstack([data, dataR])
-                    print(data)
+                    dataA = np.vstack([data, dataR])
+                    print(dataA)
                     # write a row to the csv file
                     writer.writerow(data)
                     if (button == 'H'):
