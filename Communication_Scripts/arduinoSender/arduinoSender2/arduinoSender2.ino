@@ -11,6 +11,11 @@ void loop() {
   Serial.print(analogRead(A0));
   Serial.print(",");
   //Read button state
-  Serial.print(digitalRead(2));
+  if (digitalRead(2) == HIGH){
+    Serial.print('H');
+  }
+  else{
+    Serial.print('L');
+  }
   delay(100);
 }

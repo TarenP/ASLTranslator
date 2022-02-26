@@ -93,9 +93,9 @@ def record(writer):
                 gy = parsed2[9]
                 gz = parsed2[10]
                 button = parsed1[1]
-            if(button ==1): # If button has been pressed
+            if(button == 'H'): # If button has been pressed
                 break
-    if (button == 0): #wait till button is not pressed
+    if (button == 'L'): #wait till button is not pressed
         while True:
             line1=ser1.readline().decode()
             line2=ser2.readline().decode()
@@ -153,7 +153,7 @@ def record(writer):
                 data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz]
                 # write a row to the csv file
                 writer.writerow(data)
-                if (button == 1):
+                if (button == 'H'):
                     break
 
 if __name__ == '__main__':
