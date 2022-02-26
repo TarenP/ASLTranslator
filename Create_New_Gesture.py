@@ -7,6 +7,7 @@ import csv
 import serial
 import RPi.GPIO as GPIO
 import time
+import pandas as pd
 
 #Store the sensor data
 gesture = []
@@ -31,7 +32,7 @@ def main():
             Record(writer)
     reader = csv.reader(open("Gesture_Database/" + str(name) +".csv"))
     no_lines = len(list(reader))
-    
+    dt = pd.read_csv(r"Gesture_Database/" + str(name) +".csv", skiprows=50, nrows= 10)
             
 
 #Return True when button is pressed
