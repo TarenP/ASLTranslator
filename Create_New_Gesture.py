@@ -7,12 +7,10 @@ import csv
 import serial
 import RPi.GPIO as GPIO
 import time
-import numpy as np
+
 
 #Store the sensor data
-data = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-dataA = np.array([])
-
+data = []
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -208,9 +206,7 @@ def Record(writer):
                         gy = parsed2[9]
                         gz = parsed2[10]
                         button = parsed1[1]
-                    dataR = np.array([finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz])
-                    dataA = np.vstack([data, dataR])
-                    print(dataA)
+                    data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz]
                     # write a row to the csv file
                     writer.writerow(data)
                     if (button == 'H'):
