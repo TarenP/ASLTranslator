@@ -31,6 +31,7 @@ def main():
         open("Gesture_Database/" + str(name) + "temp" +".csv", 'w', newline='', encoding='UTF8') as f_temp:
         # create the csv writer
         writer = csv.writer(f_in)
+        csv_input = csv.reader(f_in)
         
         for i in range(num):
             Button()
@@ -38,10 +39,10 @@ def main():
 
 
     # Append first 50 rows to file_out
-    csv.writer(f_out).writerows(itertools.islice(writer, 0, 50))
+    csv.writer(f_out).writerows(itertools.islice(csv_input, 0, 50))
 
     # Write the remaining rows from file_in to file_temp
-    csv.writer(f_temp).writerows(writer)
+    csv.writer(f_temp).writerows(csv_input)
 
     # Rename f_temp to file_in, first remove existing file_in then rename temp file
     os.remove("Gesture_Database/" + str(name) +"in" +".csv")
