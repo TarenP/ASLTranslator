@@ -26,8 +26,8 @@ def main():
     num = input("Enter the amount of gesture trials(suggested amount is 20):\n")
     num = int(num)
     name = input("What is the English translation of the gesture:\n")
-    with open("Gesture_Database/" + str(name) +"in" +".csv", 'w', newline='', encoding='UTF8') as f_in, \
-        open("Gesture_Database/" + str(name) +".csv", 'w', newline='', encoding='UTF8') as f_out, \
+    with open("Gesture_Database/" + str(name) +"in" +".csv", 'r', newline='', encoding='UTF8') as f_in, \
+        open("Gesture_Database/" + str(name) +".csv", 'a', newline='', encoding='UTF8') as f_out, \
         open("Gesture_Database/" + str(name) + "temp" +".csv", 'w', newline='', encoding='UTF8') as f_temp:
         # create the csv writer
         writer = csv.writer(f_in)
