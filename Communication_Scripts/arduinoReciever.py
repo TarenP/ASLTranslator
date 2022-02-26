@@ -24,6 +24,7 @@ az = 0
 gx = 0
 gy = 0
 gz = 0
+button = 0
  
 # Infinite loop
 while (1):
@@ -66,6 +67,7 @@ while (1):
             gx = parsed1[8]
             gy = parsed1[9]
             gz = parsed1[10]
+            button = parsed2[1]
         except:
             finger0 = parsed2[0]
             finger1 = parsed2[1]
@@ -78,4 +80,5 @@ while (1):
             gx = parsed2[8]
             gy = parsed2[9]
             gz = parsed2[10]
+            button = parsed1[1]
 

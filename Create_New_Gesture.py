@@ -4,7 +4,9 @@ Add a new gesture to database
 
 import random
 import csv
-
+import serial
+import RPi.GPIO as GPIO
+import time
 
 #amount of data points from each move we want
 dpts = 60
@@ -14,6 +16,13 @@ num = 20
 #Store the sensor data
 gesture = []
 data = []
+
+#Serial Addresses
+ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
+ser1.baudrate=9600
+ser2=serial.Serial("/dev/ttyACM1",9600)  #change ACM number as found from ls /dev/tty/ACM*
+ser2.baudrate=9600
+
 def main():
     num = input("Enter the amount of gesture trials(suggested amount is 20):\n")
     num = int(num)
@@ -23,41 +32,107 @@ def main():
         writer = csv.writer(f)
         
         for i in range(num):
-            data = record()
-            # write a row to the csv file
-            writer.writerow(data)
+            record(writer)
 
 #get the time it takes to perform move
-def record():
-    #get the difference between before and after move is performed for each sensor
-    input("Keep all fingers straight, hand perpendicular to the ground, and press Enter to start")
-    #Initial flex sensor values for each finger
-    thumbF0 = random.randrange(970, 976)
-    indexF0 = random.randrange(1020, 1023)
-    middleF0 = random.randrange(1020, 1023)
-    ringF0 = random.randrange(1020, 1023)
-    pinkyF0 = random.randrange(970, 976)
-    ax0 = 0
-    ay0 = 0
-    az0 = 0
-    gx0 = 0
-    gy0= 0
-    gz0 = 0
-    input("Press Enter to after move is performed")
-    #Post move flex sensor values for each finger
-    thumbF1 = random.randrange(980, 1002)
-    indexF1 = random.randrange(1010, 1023)
-    middleF1 = random.randrange(225, 250)
-    ringF1 = random.randrange(215, 245)
-    pinkyF1 = random.randrange(1000, 1010)
-    ax1 = 0
-    ay1 = 0
-    az1 = 0
-    gx1 = 90
-    gy1= 0
-    gz1 = 5
-    gesture = [thumbF0-thumbF1, indexF0-indexF1, middleF0-middleF1, ringF0-ringF1, pinkyF0-pinkyF1, ax0-ax1, ay0-ay1, az0-az1, gx0-gx1, gy0-gy1, gz1-gz0]
-    return gesture
+def record(writer):
+    while True:
+        #get the difference between before and after move is performed for each sensor
+        print("Keep all fingers straight, and press button to start")
+        #Initial flex sensor values for each finger
+        line1=ser1.readline().decode()
+        line2=ser2.readline().decode()
+    #     print(line1)
+    #     print(line2)
+
+        # Take out the commas. Parse the string into a list.
+        parsed1 = line1.split(',')
+        parsed2 = line2.split(',')
+
+        # rstrip() function removes trailing characters like
+        # the new line character '\n' and '/r'. Also removes
+        # white space.
+        parsed1 = [x.rstrip() for x in parsed1]
+        parsed2 = [x.rstrip() for x in parsed2]
+
+        print(parsed1)
+        print(parsed2)
+
+        if(len(parsed1)> 9 or len(parsed2)>9):
+            # We add the '0' character to the end of each item in the 
+            # parsed list. This makes sure that there are no empty
+            # strings in the list. Adding 0 makes sure that we have
+            # at least 6 string values we can convert into integers.
+            # Dividing by 10 removes the trailing 0 but it makes the integer a float.
+            # We then have to convert the float to an integer.
+            
+            #depending on which arduino gets assigned parsed1
+            try:
+                button = parsed2[1]
+            except:
+                button = parsed1[1]
+        if(button ==1): # If button has been pressed
+            break
+    if (button == 0): #wait till button is not pressed
+        while True:
+            line1=ser1.readline().decode()
+            line2=ser2.readline().decode()
+        #     print(line1)
+        #     print(line2)
+
+            # Take out the commas. Parse the string into a list.
+            parsed1 = line1.split(',')
+            parsed2 = line2.split(',')
+
+            # rstrip() function removes trailing characters like
+            # the new line character '\n' and '/r'. Also removes
+            # white space.
+            parsed1 = [x.rstrip() for x in parsed1]
+            parsed2 = [x.rstrip() for x in parsed2]
+
+            print(parsed1)
+            print(parsed2)
+
+            if(len(parsed1)> 9 or len(parsed2)>9):
+                # We add the '0' character to the end of each item in the 
+                # parsed list. This makes sure that there are no empty
+                # strings in the list. Adding 0 makes sure that we have
+                # at least 6 string values we can convert into integers.
+                # Dividing by 10 removes the trailing 0 but it makes the integer a float.
+                # We then have to convert the float to an integer.
+                
+                #depending on which arduino gets assigned parsed1
+                try:
+                    finger0 = parsed1[0]
+                    finger1 = parsed1[1]
+                    finger2 = parsed1[2]
+                    finger3 = parsed1[3]
+                    finger4 = parsed2[0]
+                    ax = parsed1[5]
+                    ay = parsed1[6]
+                    az = parsed1[7]
+                    gx = parsed1[8]
+                    gy = parsed1[9]
+                    gz = parsed1[10]
+                    button = parsed2[1]
+                except:
+                    finger0 = parsed2[0]
+                    finger1 = parsed2[1]
+                    finger2 = parsed2[2]
+                    finger3 = parsed2[3]
+                    finger4 = parsed1[0]
+                    ax = parsed2[5]
+                    ay = parsed2[6]
+                    az = parsed2[7]
+                    gx = parsed2[8]
+                    gy = parsed2[9]
+                    gz = parsed2[10]
+                    button = parsed1[1]
+                data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz]
+                # write a row to the csv file
+                writer.writerow(data)
+                if (button == 1):
+                    break
 
 if __name__ == '__main__':
     main()
