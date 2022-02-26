@@ -68,10 +68,31 @@ def record(writer):
             
             #depending on which arduino gets assigned parsed1
             try:
+                finger0 = parsed1[0]
+                finger1 = parsed1[1]
+                finger2 = parsed1[2]
+                finger3 = parsed1[3]
+                finger4 = parsed2[0]
+                ax = parsed1[5]
+                ay = parsed1[6]
+                az = parsed1[7]
+                gx = parsed1[8]
+                gy = parsed1[9]
+                gz = parsed1[10]
                 button = parsed2[1]
             except:
+                finger0 = parsed2[0]
+                finger1 = parsed2[1]
+                finger2 = parsed2[2]
+                finger3 = parsed2[3]
+                finger4 = parsed1[0]
+                ax = parsed2[5]
+                ay = parsed2[6]
+                az = parsed2[7]
+                gx = parsed2[8]
+                gy = parsed2[9]
+                gz = parsed2[10]
                 button = parsed1[1]
-                
             if(button ==1): # If button has been pressed
                 break
     if (button == 0): #wait till button is not pressed
