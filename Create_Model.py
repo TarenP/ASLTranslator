@@ -15,7 +15,7 @@ import math
 
 
 #generate an artificial dataset
-data = np.array([])
+data = []
 target =[]
 l = 0 #the spacing that the elements need to be in the array
 
