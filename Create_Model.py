@@ -20,22 +20,24 @@ target =[]
 
 def main():
     #Go through every gesture's file in the database
-    folder_path = '/some/path/to/file'
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         with open(filename, 'r') as f:
             f = open(filename, encoding='UTF8')
             csv_reader = csv.reader(f)
+            csvArray=[]
             for line in csv_reader:
                 #add the data from each line from the gesture's file to the array that will be used to train the model
                 gesture = [int(float(line[0])), int(float(line[1])), int(float(line[2])), int(float(line[3])), int(float(line[4])),int(float(line[5])), int(float(line[6])), int(float(line[7])), int(float(line[8])), int(float(line[9]))]
                 csvArray.append(gesture)
-            data.append(csvArray)
             #remove the filepath from the name
             name = filename.replace("./Gesture_Database/", "")
             name = name.replace(".csv", "")
             name = ''.join((x for x in name if not x.isdigit()))
             target.append(name)
-            print(target)
+            with open("Gesture_Database/" + str(name) + ".csv", 'w', newline='', encoding='UTF8') as f:
+                # create the csv writer
+                writer = csv.writer(f)
+                writer.writerow(csvArray)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
