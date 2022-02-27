@@ -26,6 +26,7 @@ def main():
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
         Array2d_result = np.loadtxt(CSVData, delimiter=",")
+        print(Array2d_result)
         #remove the filepath from the name
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
@@ -39,8 +40,8 @@ def main():
         print(l)
         print(dpts)
         for i in range(dpts):
-            print(Array2d_result(i * dpts))
-        
+            data.append(Array2d_result(i * dpts))
+        print(data)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
