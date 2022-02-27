@@ -71,7 +71,6 @@ def main():
 
 def compress(arr):
     arr = np.array([arr])
-    arr = arr.astype('int')
     # Stores the required integer
     ans = 0
     getBit = 1
@@ -110,7 +109,7 @@ def getResult(mat):
     for i in range(len(mat)):
         col = []
         for j in range(len(mat[0])):
-            col.append(mat[i][j])
+            col.append(int(mat[i][j]))
 
     # Compress all columns
     # to a single number 
