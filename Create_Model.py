@@ -22,7 +22,7 @@ def main():
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
-        Array2d_result = np.loadtxt(CSVData, delimiter=",")
+        Array2d_result = np.genfromtxt(CSVData, delimiter=",")
         #remove the filepath from the name
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
