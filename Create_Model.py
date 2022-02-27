@@ -35,16 +35,16 @@ def main():
         target.append(name)
         #print(Array2d_result)
         length = len(Array2d_result)
-        print(length)
+       # print(length)
         l = length/dpts #how many datapoints to extract from the csv file
         l = math.trunc(l)
-        print(l)
-        print(dpts)
+        #print(l)
+        #print(dpts)
         temp = []
         for i in range(dpts):
             temp.append(Array2d_result[i * l])
         data.append(temp)
-        print(len(data))
+        #print(len(data))
         data = data.reshape()
 
     #split data into 20% test and 80% train
