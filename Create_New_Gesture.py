@@ -95,7 +95,7 @@ def Button():
                 return
 
 #Record Gesture
-def Record(writer, name):
+def Record(writer):
     while True:
         line1=ser1.readline().decode()
         line2=ser2.readline().decode()
