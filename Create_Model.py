@@ -85,6 +85,7 @@ def getResult(mat):
         
         append = list_average(col)
         print(append)
+        compressedArr.append(append)
 
     return compressedArr
  
