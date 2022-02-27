@@ -78,7 +78,6 @@ def getResult(mat):
     
     # Stores compressed array
     compressedArr = []
-    print(len(mat))
     for i in range(len(mat[0])):
         col = []
         for j in range(len(mat)):
