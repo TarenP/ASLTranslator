@@ -39,7 +39,7 @@ def main():
         l = math.trunc(l)
         #print(l)
         #print(dpts)
-        with open(filename + '-1', 'w+') as output_file:
+        with open(filename, 'w+') as output_file:
             with open(filename) as input_file: #change you file name here
                 reader = csv.reader(input_file, delimiter = '\n')
                 for i in range(len(Array2d_result)):
