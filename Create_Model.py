@@ -77,14 +77,23 @@ def getResult(mat):
     # Stores compressed array
     compressedArr = []
     print(len(mat))
-    for i in range(len(mat)):
+    for i in range(len(mat[0])):
         col = []
-        for j in range(len(mat[0])):
+        for j in range(len(mat)):
             col.append(mat[j][i])
+        
+        compressedArr.append(list_average(col))
 
-    
+    print(compressedArr)
     return compressedArr
  
+def list_average(num):
+    sum_num = 0
+    for t in num:
+        sum_num = sum_num + t           
+
+    avg = sum_num / len(num)
+    return avg
 
 if __name__ == '__main__':
     main()
