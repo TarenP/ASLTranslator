@@ -42,7 +42,7 @@ def main():
         print(dpts)
         for i in range(dpts):
             temp.append(Array2d_result[i * l])
-        data.append(temp)
+        np.append(data, temp)
         print(len(data))
         nsamples, nx, ny = data.shape
         d2_train_dataset = data.reshape((nsamples,nx*ny)) #3D array to 2D
