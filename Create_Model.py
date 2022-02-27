@@ -70,6 +70,7 @@ def main():
         pickle.dump(model, f)
 
 def compress(arr):
+    arr = np.array([arr])
     arr = arr.astype('int')
     # Stores the required integer
     ans = 0
