@@ -29,7 +29,7 @@ def main():
                 #add the data from each line from the gesture's file to the array that will be used to train the model
                 gesture = [int(float(line[0])), int(float(line[1])), int(float(line[2])), int(float(line[3])), int(float(line[4])),int(float(line[5])), int(float(line[6])), int(float(line[7])), int(float(line[8])), int(float(line[9]))]
                 csvArray.append(gesture)
-            data.append(gesture)
+            data.append(csvArray)
             #remove the filepath from the name
             name = filename.replace("./Gesture_Database/", "")
             name = name.replace(".csv", "")
