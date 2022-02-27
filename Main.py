@@ -221,7 +221,7 @@ def getResult(mat):
     for i in range(len(mat[0])):
         col = []
         for j in range(len(mat)):
-            col.append(mat[j][i])
+            col.append(int(mat[j][i]))
         
         append = list_average(col)
         print(append)
