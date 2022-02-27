@@ -44,10 +44,11 @@ def main():
             temp.append(Array2d_result[i * l])
         data.append(temp)
         print(len(data))
-        data = data.reshape(data.shape[0], -1) #3D array to 2D
+        nsamples, nx, ny = data.shape
+        d2_train_dataset = data.reshape((nsamples,nx*ny)) #3D array to 2D
 
     #split data into 20% test and 80% train
-    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
+    x_train, x_test, y_train, y_test = train_test_split(d2_train_dataset, target, test_size= 0.2)
     # print(len(x_train))
     # print(len(x_test))
     
