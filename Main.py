@@ -212,7 +212,8 @@ def Record():
                     # write a row to the csv file
                     print("active")
                     if (button == 'H'):
-                        temp = getResult(dataMatrix)
+                        temp = []
+                        temp.append(getResult(dataMatrix))
                         print(temp)
                         return temp
                     num += 1
