@@ -18,10 +18,10 @@ import math
 gesture = []
 data = []
 target =[]
-dpts = 100
 l = 0 #the spacing that the elements need to be in the array
 
 def main():
+    dpts = 100
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
@@ -33,8 +33,9 @@ def main():
         target.append(name)
         #print(Array2d_result)
         length = len(Array2d_result)
+        print(length)
         l = length/dpts #how many datapoints to extract from the csv file
-        math.trunc(l)
+        l = math.trunc(l)
         print(l)
         if l > length:
             dpts = length
