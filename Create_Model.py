@@ -22,14 +22,14 @@ def main():
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
-        Array2d_result = np.genfromtxt(CSVData, delimiter=",")
+        Array2d_result = np.loadtxt(CSVData, delimiter=",")
         #remove the filepath from the name
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
         target.append(name)
-        data.append(Array2d_result)
-        print(data)
+        #data.append(Array2d_result)
+        print(Array2d_result)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
