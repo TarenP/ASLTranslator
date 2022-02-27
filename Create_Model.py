@@ -43,8 +43,10 @@ def main():
         temp = []
         for i in range(dpts):
             temp.append(i * l) #append elements needed
-        for i in temp:
-            Array2d_result = np.delete(Array2d_result, temp[i])
+        for i in dpts:
+            for j in temp:
+                if i != j:
+                    Array2d_result = np.delete(Array2d_result, temp[i])
         data.append(Array2d_result)
         #print(len(data))
 
