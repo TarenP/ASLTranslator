@@ -6,6 +6,7 @@ from time import sleep
 import random
 import csv
 from numpy import mod
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os,glob
@@ -13,9 +14,8 @@ import pickle
 
 
 #generate an artificial dataset
-data = []
 gesture = []
-csvArray = []
+data = np.array([])
 target =[]
 
 def main():
@@ -28,16 +28,13 @@ def main():
             for line in csv_reader:
                 #add the data from each line from the gesture's file to the array that will be used to train the model
                 gesture = [int(float(line[0])), int(float(line[1])), int(float(line[2])), int(float(line[3])), int(float(line[4])),int(float(line[5])), int(float(line[6])), int(float(line[7])), int(float(line[8])), int(float(line[9]))]
-                csvArray.append(gesture)
+                data = np.append(data,[gesture],axis=0)
             #remove the filepath from the name
             name = filename.replace("./Gesture_Database/", "")
             name = name.replace(".csv", "")
             name = ''.join((x for x in name if not x.isdigit()))
             target.append(name)
-            with open("Gesture_Database/" + str(name) + ".csv", 'w', newline='', encoding='UTF8') as f:
-                # create the csv writer
-                writer = csv.writer(f)
-                writer.writerow(csvArray)
+            print(data)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
