@@ -205,7 +205,7 @@ def Record():
                         dataMatrix = np.array[finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy]
                     else:
                         data = np.array[finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy]
-                        np.vstack(dataMatrix, data)
+                        dataMatrix = np.vstack(dataMatrix, data)
                     print(dataMatrix)
                     # write a row to the csv file
                     print("active")
