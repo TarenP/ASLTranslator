@@ -23,6 +23,7 @@ def main():
         dataMatrix =[]
         Button()
         recordedData = Record()
+        print(model.predict([recordedData[0]]))
     
             
 
@@ -209,8 +210,32 @@ def Record():
                     # write a row to the csv file
                     print("active")
                     if (button == 'H'):
-                        return data
+                        temp = getResult(dataMatrix)
+                        return temp
                     num += 1
+
+def getResult(mat):
+    
+    # Stores compressed array
+    compressedArr = []
+    for i in range(len(mat[0])):
+        col = []
+        for j in range(len(mat)):
+            col.append(mat[j][i])
+        
+        append = list_average(col)
+        print(append)
+        compressedArr.append(append)
+
+    return compressedArr
+ 
+def list_average(num):
+    sum_num = 0
+    for t in num:
+        sum_num = sum_num + t           
+
+    avg = sum_num / len(num)
+    return avg
 # gesture = [thumbF, indexF, middleF, ringF, pinkyF, ax, ay, az, gx, gy, gz]
 # test=[]
 # test.append(gesture)
