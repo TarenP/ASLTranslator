@@ -69,6 +69,36 @@ def main():
     with open('model_pickle', 'wb') as f:
         pickle.dump(model, f)
 
+def compress(arr):
+ 
+  # Stores the required integer
+  ans = 0
+  getBit = 1
+ 
+  # Checking for each position
+  for i in range(32):
+ 
+    S = 0
+    NS = 0
+ 
+    for j in arr:
+ 
+      # Count set and unset bits
+      if getBit&j:
+        S += 1
+      else:
+        NS += 1
+ 
+    # If count of set bits exceeds
+    # count of unset bits
+    if S > NS:
+  
+      # Add value of set bits to ans
+      ans += 2**i
+    getBit <<= 1
+ 
+  return ans
+
 # Function to compress
 # matrix to a single number
 def getResult(mat):
