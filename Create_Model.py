@@ -45,7 +45,7 @@ def main():
             print(i)
             temp.append(Array2d_result[i * l])
         final.append(temp)
-        print(final)
+        print(len(final))
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
