@@ -31,8 +31,12 @@ def main():
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
         target.append(name)
-        Array2d_result = getResult(Array2d_result)
-        print(Array2d_result)
+        # Array2d_result = getResult(Array2d_result)
+        # print(Array2d_result)
+        # Driver Code
+        mat = [ [ 3, 2, 4], [5, 6, 1], [8, 1, 3] ]
+        
+        print( getResult(mat) )
     #     #print(Array2d_result)
     #     length = len(Array2d_result)
     #    # print(length)
@@ -69,55 +73,54 @@ def main():
     with open('model_pickle', 'wb') as f:
         pickle.dump(model, f)
 
-# Function to compress an
-# array to a single number
 def compress(arr):
  
     # Stores the required integer
     ans = 0
     getBit = 1
-
+    
     # Checking for each position
     for i in range(32):
-
-    S = 0
-    NS = 0
-
-    for j in arr:
-
-        # Count set and unset bits
-        if getBit&j:
-        S += 1
-        else:
-        NS += 1
-
-    # If count of set bits exceeds
-    # count of unset bits
-    if S > NS:
-
+    
+        S = 0
+        NS = 0
+    
+        for j in arr:
+    
+            # Count set and unset bits
+            if getBit&j:
+                S += 1
+            else:
+                NS += 1
+        
+        # If count of set bits exceeds
+        # count of unset bits
+        if S > NS:
+    
         # Add value of set bits to ans
-        ans += 2**i
-    getBit <<= 1
-
+            ans += 2**i
+        getBit <<= 1
+    
     return ans
- 
-# Function to compress
-# matrix to a single number
+    
+    # Function to compress
+    # matrix to a single number
 def getResult(mat):
- 
+    
     # Stores compressed array
     compressedArr = []
-
+    
     for i in range(len(mat)):
         col = []
         for j in range(len(mat[0])):
             col.append(mat[j][i])
-
+    
         # Compress all columns
         # to a single number 
         compressedArr.append(compress(col))
-
+    
     return compress(compressedArr)
+ 
 
 if __name__ == '__main__':
     main()
