@@ -16,7 +16,7 @@ import math
 
 #generate an artificial dataset
 gesture = []
-data = np.array([])
+data = []
 temp = []
 target =[]
 l = 0 #the spacing that the elements need to be in the array
@@ -42,13 +42,11 @@ def main():
         print(dpts)
         for i in range(dpts):
             temp.append(Array2d_result[i * l])
-        np.append(data, temp)
+        data.append(temp)
         print(len(data))
-        nsamples, nx, ny = data.shape
-        d2_train_dataset = data.reshape((nsamples,nx*ny)) #3D array to 2D
 
     #split data into 20% test and 80% train
-    x_train, x_test, y_train, y_test = train_test_split(d2_train_dataset, target, test_size= 0.2)
+    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
     # print(len(x_train))
     # print(len(x_test))
     
