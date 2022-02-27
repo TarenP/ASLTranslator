@@ -31,31 +31,9 @@ def main():
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
         target.append(name)
-        # Array2d_result = getResult(Array2d_result)
-        # print(Array2d_result)
-        #print(Array2d_result)
-        # length = len(Array2d_result)
         Array2d_result = getResult(Array2d_result)
         data.append(Array2d_result)
         print(data)
-       # print(length)
-    #     l = length/dpts #how many datapoints to extract from the csv file
-    #     l = math.trunc(l)
-    #     #print(l)
-    #     #print(dpts)
-    #     for i in range(len(Array2d_result)):
-    #         if i % l != 0:
-    #             try:
-    #                 Array2d_result = np.delete(Array2d_result, i)
-    #             except:
-    #                 pass
-    #     if len(Array2d_result) > 10:
-    #         for i in range(len(Array2d_result)):
-    #             if i > 10:
-    #                 Array2d_result = np.delete(Array2d_result, i)   
-    #     data.append(Array2d_result)
-    # print(len(data))
-    # print(data)
 
 
     #split data into 20% test and 80% train
