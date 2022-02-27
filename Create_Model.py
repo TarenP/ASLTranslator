@@ -38,7 +38,7 @@ def main():
         l = math.trunc(l)
         print(l)
         print(dpts)
-        for i in dpts:
+        for i in range(dpts):
             data.append(Array2d_result(i * dpts))
         print(data)
 
