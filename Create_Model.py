@@ -37,7 +37,6 @@ def main():
         math.trunc(l)
         print(l)
         if l > length:
-            global dpts 
             dpts = length
         print(dpts)
 
