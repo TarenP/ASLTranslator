@@ -40,6 +40,7 @@ def main():
         print(l)
         print(dpts)
         for i in range(dpts):
+            print(i)
             data.append(Array2d_result[i * dpts])
         print(data)
 
