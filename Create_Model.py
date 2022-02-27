@@ -70,52 +70,52 @@ def main():
         pickle.dump(model, f)
 
 def compress(arr):
- 
-  # Stores the required integer
-  ans = 0
-  getBit = 1
- 
-  # Checking for each position
-  for i in range(32):
- 
-    S = 0
-    NS = 0
- 
+    arr = arr.astype('int')
+    # Stores the required integer
+    ans = 0
+    getBit = 1
+
+    # Checking for each position
+    for i in range(32):
+
+        S = 0
+        NS = 0
+
     for j in arr:
- 
-      # Count set and unset bits
-      if getBit&j:
-        S += 1
-      else:
-        NS += 1
- 
+
+        # Count set and unset bits
+        if getBit&j:
+            S += 1
+        else:
+            NS += 1
+
     # If count of set bits exceeds
     # count of unset bits
     if S > NS:
-  
-      # Add value of set bits to ans
-      ans += 2**i
-    getBit <<= 1
- 
-  return ans
 
-# Function to compress
-# matrix to a single number
+        # Add value of set bits to ans
+        ans += 2**i
+        getBit <<= 1
+
+    return ans
+
+    # Function to compress
+    # matrix to a single number
 def getResult(mat):
- 
-  # Stores compressed array
-  compressedArr = []
- 
-  for i in range(len(mat)):
-    col = []
+
+    # Stores compressed array
+    compressedArr = []
+
+    for i in range(len(mat)):
+        col = []
     for j in range(len(mat[0])):
-      col.append(mat[j][i])
- 
+        col.append(mat[j][i])
+
     # Compress all columns
     # to a single number 
     compressedArr.append(compress(col))
- 
-  return compress(compressedArr)
+
+    return compress(compressedArr)
 
 if __name__ == '__main__':
     main()
