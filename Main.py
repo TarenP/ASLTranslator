@@ -202,9 +202,9 @@ def Record():
                         gz = parsed2[10]
                         button = parsed1[1]
                     if num ==1:
-                        dataMatrix = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy]
+                        dataMatrix = np.array[finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy]
                     else:
-                        data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy]
+                        data = np.array[finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy]
                         np.vstack(dataMatrix, data)
                     print(dataMatrix)
                     # write a row to the csv file
