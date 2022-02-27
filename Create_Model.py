@@ -39,16 +39,13 @@ def main():
         l = math.trunc(l)
         #print(l)
         #print(dpts)
-        with open(filename + '-1', 'w+') as output_file:
-            with open(filename) as input_file: #change you file name here
-                reader = csv.reader(input_file, delimiter = '\n')
-                for i in range(len(Array2d_result)):
-                    if i % l != 0:
-                        Array2d_result = np.delete(Array2d_result(), i)
-                if len(list(reader)) > 10:
-                    for i in range(len(Array2d_result)):
-                        if i > 10:
-                         Array2d_result = np.delete(Array2d_result(), i)   
+        for i in range(len(Array2d_result)):
+            if i % l != 0:
+                Array2d_result = np.delete(Array2d_result, i)
+        if range(len(Array2d_result)) > 10:
+            for i in range(len(Array2d_result)):
+                if i > 10:
+                    Array2d_result = np.delete(Array2d_result, i)   
         #data.append(Array2d_result)
         print(len(data))
         print(data)
