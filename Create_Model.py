@@ -18,6 +18,7 @@ gesture = []
 data = []
 target =[]
 dpts = 15
+l = 0 #the spacing that the elements need to be in the array
 
 def main():
     #Go through every gesture's file in the database
@@ -31,7 +32,7 @@ def main():
         target.append(name)
         #print(Array2d_result)
         length = len(Array2d_result)
-        len = length/15 #how many datapoints to extract from the csv file
+        l = length/dpts #how many datapoints to extract from the csv file
         print(len)
 
     #split data into 20% test and 80% train
