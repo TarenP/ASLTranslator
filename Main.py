@@ -20,12 +20,11 @@ with open('model_pickle', 'rb') as f:
 dataMatrix =[]
 # #Generate an artificial move to see if the model answers correctly
 def main():
-    while True:
-        Button()
-        recordedData = Record()
-        print(model.predict([recordedData[0]]))
-        sleep(5)
-    
+    Button()
+    recordedData = Record()
+    print(model.predict([recordedData[0]]))
+    sleep(5)
+
             
 
 #Return True when button is pressed
@@ -33,8 +32,6 @@ def Button():
     while True:
         #get the difference between before and after move is performed for each sensor
         print("Keep all fingers straight, and press button to start")
-        print("hi")
-        sleep(5)
         #Initial flex sensor values for each finger
         line1=ser1.readline().decode()
         line2=ser2.readline().decode()
@@ -246,4 +243,5 @@ def list_average(num):
 # test.append(gesture)
 # print(model.predict([test[0]]))
 if __name__ == '__main__':
-    main()
+    while True:
+        main()
