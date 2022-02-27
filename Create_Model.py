@@ -16,7 +16,7 @@ import math
 
 #generate an artificial dataset
 gesture = []
-data = np.array([])
+data = []
 temp = []
 target =[]
 l = 0 #the spacing that the elements need to be in the array
@@ -44,7 +44,7 @@ def main():
         for i in range(dpts):
             temp.append(i * l) #append elements needed
         for i in temp:
-            Array2d_result = np.delete(Array2d_result, temp(i))
+            Array2d_result = np.delete(Array2d_result, temp[i])
         data.append(Array2d_result)
         #print(len(data))
 
