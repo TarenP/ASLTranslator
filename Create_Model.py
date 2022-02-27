@@ -69,8 +69,10 @@ def main():
     with open('model_pickle', 'wb') as f:
         pickle.dump(model, f)
 
+# Function to compress an
+# array to a single number
 def compress(arr):
-    arr = np.array([arr])
+ 
     # Stores the required integer
     ans = 0
     getBit = 1
@@ -78,16 +80,16 @@ def compress(arr):
     # Checking for each position
     for i in range(32):
 
-        S = 0
-        NS = 0
+    S = 0
+    NS = 0
 
     for j in arr:
 
         # Count set and unset bits
         if getBit&j:
-            S += 1
+        S += 1
         else:
-            NS += 1
+        NS += 1
 
     # If count of set bits exceeds
     # count of unset bits
@@ -95,25 +97,25 @@ def compress(arr):
 
         # Add value of set bits to ans
         ans += 2**i
-        getBit <<= 1
+    getBit <<= 1
 
     return ans
-
-    # Function to compress
-    # matrix to a single number
+ 
+# Function to compress
+# matrix to a single number
 def getResult(mat):
-
+ 
     # Stores compressed array
     compressedArr = []
 
     for i in range(len(mat)):
         col = []
         for j in range(len(mat[0])):
-            col.append(int(mat[i][j]))
+            col.append(mat[j][i])
 
-    # Compress all columns
-    # to a single number 
-    compressedArr.append(compress(col))
+        # Compress all columns
+        # to a single number 
+        compressedArr.append(compress(col))
 
     return compress(compressedArr)
 
