@@ -21,7 +21,6 @@ dataMatrix =[]
 # #Generate an artificial move to see if the model answers correctly
 def main():
     while True:
-        print("hi")
         Button()
         recordedData = Record()
         print(model.predict([recordedData[0]]))
@@ -34,6 +33,8 @@ def Button():
     while True:
         #get the difference between before and after move is performed for each sensor
         print("Keep all fingers straight, and press button to start")
+        print("hi")
+        sleep(5)
         #Initial flex sensor values for each finger
         line1=ser1.readline().decode()
         line2=ser2.readline().decode()
