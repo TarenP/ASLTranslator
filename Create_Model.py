@@ -17,6 +17,7 @@ import pickle
 gesture = []
 data = []
 target =[]
+dpts = 15
 
 def main():
     #Go through every gesture's file in the database
@@ -28,8 +29,10 @@ def main():
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
         target.append(name)
-        #data.append(Array2d_result)
-        print(Array2d_result)
+        #print(Array2d_result)
+        length = len(Array2d_result)
+        spacedArray = GetSpacedElements(Array2d_result, length/dpts)
+        print(spacedArray)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
@@ -44,6 +47,10 @@ def main():
     
     with open('model_pickle', 'wb') as f:
         pickle.dump(model, f)
+
+def GetSpacedElements(array, numElems):
+    out = array[np.round(np.linspace(0, len(array)-1, numElems)).astype(int)]
+    return out
 
 if __name__ == '__main__':
     main()
