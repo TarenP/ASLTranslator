@@ -25,7 +25,6 @@ def main():
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
         Array2d_result = np.loadtxt(CSVData, delimiter=",")
-        print(Array2d_result)
         
         #remove the filepath from the name
         name = filename.replace("./Gesture_Database/", "")
@@ -49,9 +48,9 @@ def main():
             for i in range(len(Array2d_result)):
                 if i > 10:
                     Array2d_result = np.delete(Array2d_result, i)   
-        #data.append(Array2d_result)
-        print(len(data))
-        print(data)
+        data.append(Array2d_result)
+    print(len(data))
+    print(data)
 
 
     #split data into 20% test and 80% train
