@@ -27,14 +27,13 @@ def main():
             csvArray=[]
             for line in csv_reader:
                 #add the data from each line from the gesture's file to the array that will be used to train the model
-                gesture = [int(float(line[0])), int(float(line[1])), int(float(line[2])), int(float(line[3])), int(float(line[4])),int(float(line[5])), int(float(line[6])), int(float(line[7])), int(float(line[8])), int(float(line[9]))]
-                data = np.append(data,[gesture],axis=0)
+                gesture = np.array([int(float(line[0])), int(float(line[1])), int(float(line[2])), int(float(line[3])), int(float(line[4])),int(float(line[5])), int(float(line[6])), int(float(line[7])), int(float(line[8])), int(float(line[9]))])
             #remove the filepath from the name
             name = filename.replace("./Gesture_Database/", "")
             name = name.replace(".csv", "")
             name = ''.join((x for x in name if not x.isdigit()))
             target.append(name)
-            print(data)
+            print(gesture)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
