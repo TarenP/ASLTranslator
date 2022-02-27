@@ -11,13 +11,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os,glob
 import pickle
+import math
 
 
 #generate an artificial dataset
 gesture = []
 data = []
 target =[]
-dpts = 15
+dpts = 100
 l = 0 #the spacing that the elements need to be in the array
 
 def main():
@@ -33,7 +34,12 @@ def main():
         #print(Array2d_result)
         length = len(Array2d_result)
         l = length/dpts #how many datapoints to extract from the csv file
-        print(len)
+        math.trunc(l)
+        print(l)
+        if l > length:
+            global dpts 
+            dpts = length
+        print(dpts)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
