@@ -53,8 +53,8 @@ def Button():
         parsed1 = [x.rstrip() for x in parsed1]
         parsed2 = [x.rstrip() for x in parsed2]
 
-        print(parsed1)
-        print(parsed2)
+        #print(parsed1)
+        #print(parsed2)
 
         if(len(parsed1)> 9 or len(parsed2)>9):
             # We add the '0' character to the end of each item in the 
@@ -112,8 +112,8 @@ def Record(writer):
         parsed1 = [x.rstrip() for x in parsed1]
         parsed2 = [x.rstrip() for x in parsed2]
 
-        print(parsed1)
-        print(parsed2)
+        #print(parsed1)
+        #print(parsed2)
 
         if(len(parsed1)> 9 or len(parsed2)>9):
             # We add the '0' character to the end of each item in the 
