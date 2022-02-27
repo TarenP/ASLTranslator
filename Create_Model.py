@@ -15,27 +15,20 @@ import pickle
 
 #generate an artificial dataset
 gesture = []
-csvData = []
 data = []
 target =[]
 
 def main():
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
-        csvData=[]
-        with open(filename, 'r') as f:
-            f = open(filename, encoding='UTF8')
-            csv_reader = csv.reader(f)
-            for line in csv_reader:
-                #add the data from each line from the gesture's file to the array that will be used to train the model
-                gesture = [int(float(line[0])), int(float(line[1])), int(float(line[2])), int(float(line[3])), int(float(line[4])),int(float(line[5])), int(float(line[6])), int(float(line[7])), int(float(line[8])), int(float(line[9]))]
-                csvData.append(gesture)
-            #remove the filepath from the name
-            name = filename.replace("./Gesture_Database/", "")
-            name = name.replace(".csv", "")
-            name = ''.join((x for x in name if not x.isdigit()))
-            target.append(name)
-        data.append(csvData)
+        CSVData = open(filename)
+        Array2d_result = np.loadtxt(CSVData, delimiter=",")
+        #remove the filepath from the name
+        name = filename.replace("./Gesture_Database/", "")
+        name = name.replace(".csv", "")
+        name = ''.join((x for x in name if not x.isdigit()))
+        target.append(name)
+        data.append(Array2d_result)
         print(data)
 
     #split data into 20% test and 80% train
