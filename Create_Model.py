@@ -60,18 +60,18 @@ def main():
 
 
     #split data into 20% test and 80% train
-    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
-    # print(len(x_train))
-    # print(len(x_test))
+    # x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
+    # # print(len(x_train))
+    # # print(len(x_test))
     
-    model = LogisticRegression()
-    #train model
-    model.fit(x_train, y_train)
-    #print the accuracy of model against the test data
-    print(model.score(x_test, y_test))
+    # model = LogisticRegression()
+    # #train model
+    # model.fit(x_train, y_train)
+    # #print the accuracy of model against the test data
+    # print(model.score(x_test, y_test))
     
-    with open('model_pickle', 'wb') as f:
-        pickle.dump(model, f)
+    # with open('model_pickle', 'wb') as f:
+    #     pickle.dump(model, f)
 
 def compress(arr):
  
