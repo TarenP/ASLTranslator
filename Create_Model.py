@@ -38,13 +38,9 @@ def main():
         l = math.trunc(l)
         #print(l)
         #print(dpts)
-        for i in Array2d_result:
-            n = l-1
-            for x in range(n):
-                try:
-                    np.delete(Array2d_result, x+l)
-                except:
-                    break
+        for i in range(len(Array2d_result)):
+            if i % l != 0:
+                np.delete(Array2d_result, i)
         if len(Array2d_result) > 10:
             for i in range(len(Array2d_result)):
                 if i > 10:
