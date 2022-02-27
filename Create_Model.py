@@ -16,7 +16,7 @@ import math
 
 #generate an artificial dataset
 gesture = []
-data = []
+data = np.array([])
 temp = []
 target =[]
 l = 0 #the spacing that the elements need to be in the array
