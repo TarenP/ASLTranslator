@@ -45,6 +45,10 @@ def main():
                     np.delete(Array2d_result, x+l)
                 except:
                     break
+        if Array2d_result > 10:
+            for i in Array2d_result:
+                if i > 10:
+                    np.delete(Array2d_result, i)
         data.append(Array2d_result)
         print(len(data))
         print(data)
