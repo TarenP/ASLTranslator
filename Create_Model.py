@@ -26,6 +26,7 @@ def main():
         CSVData = open(filename)
         Array2d_result = np.loadtxt(CSVData, delimiter=",")
         print(Array2d_result)
+        
         #remove the filepath from the name
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
@@ -50,8 +51,11 @@ def main():
                 if len(list(reader)) > 10:
                     for i in range(len(Array2d_result)):
                         if i > 10:
-                            np.delete(Array2d_result, i)
-        data.append(Array2d_result)
+                            for row in reader:
+                                line = row[i]
+                                output_file.write(line)
+                                output_file.write('\n')
+        #data.append(Array2d_result)
         print(len(data))
         print(data)
 
