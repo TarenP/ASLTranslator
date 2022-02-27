@@ -21,7 +21,7 @@ target =[]
 l = 0 #the spacing that the elements need to be in the array
 
 def main():
-    dpts = 100
+    dpts = 40
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
