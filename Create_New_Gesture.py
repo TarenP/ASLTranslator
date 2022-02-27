@@ -28,7 +28,7 @@ def main():
             writer = csv.writer(f)
             
             Button()
-            Record(writer, name)
+            Record(writer)
     
             
 
@@ -204,8 +204,7 @@ def Record(writer, name):
                         gy = parsed2[9]
                         gz = parsed2[10]
                         button = parsed1[1]
-                    data = [int(float(finger0)), int(float(finger1)), int(float(finger2)), int(float(finger3)), int(float(finger4)), int(float(ax)),int(float(ay)), int(float(az)), int(float(gx)), int(float(gy)), int(float(gz))]
-                    data.pop()
+                    data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz]
                     # write a row to the csv file
                     writer.writerow(data)
                     if (button == 'H'):
