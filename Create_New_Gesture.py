@@ -92,6 +92,7 @@ def Button():
                 gz = parsed2[10]
                 button = parsed1[1]
             if(button == 'H'): # If button has been pressed
+                print("pressed")
                 return
 
 #Record Gesture
@@ -207,6 +208,7 @@ def Record(writer):
                     data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy]
                     # write a row to the csv file
                     writer.writerow(data)
+                    print("active")
                     if (button == 'H'):
                         return
 
