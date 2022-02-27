@@ -26,8 +26,8 @@ def main():
             f = open(filename, encoding='UTF8')
             csv_reader = csv.reader(f)
             x = list(csv_reader)
-            result = np.array(x).astype("float")
-            result = np.array(list(csv.reader(open("test.csv", "rb"), delimiter=","))).astype("float")
+            result = np.array(x).astype("string")
+            result = np.array(list(csv.reader(open("test.csv", "rb"), delimiter=","))).astype("string")
             print(result)
             # data.append(gesture)
             # #remove the filepath from the name

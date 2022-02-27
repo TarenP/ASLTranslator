@@ -204,7 +204,7 @@ def Record(writer, name):
                         gy = parsed2[9]
                         gz = parsed2[10]
                         button = parsed1[1]
-                    data = [float(finger0), float(finger1), float(finger2), float(finger3), float(finger4), float(ax), float(ay), float(az), float(gx), float(gy), float(gz)]
+                    data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz]
                     # write a row to the csv file
                     writer.writerow(data)
                     if (button == 'H'):
