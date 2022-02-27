@@ -31,7 +31,8 @@ def main():
         target.append(name)
         #print(Array2d_result)
         length = len(Array2d_result)
-        print(length)
+        len = length/15 #how many datapoints to extract from the csv file
+        print(len)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
