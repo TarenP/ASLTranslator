@@ -41,8 +41,11 @@ def main():
         #print(dpts)
         for i in range(len(Array2d_result)):
             if i % l != 0:
-                Array2d_result = np.delete(Array2d_result, i)
-        if range(len(Array2d_result)) > 10:
+                try:
+                    Array2d_result = np.delete(Array2d_result, i)
+                except:
+                    pass
+        if len(Array2d_result) > 10:
             for i in range(len(Array2d_result)):
                 if i > 10:
                     Array2d_result = np.delete(Array2d_result, i)   
