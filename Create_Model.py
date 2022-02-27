@@ -21,7 +21,7 @@ target =[]
 l = 0 #the spacing that the elements need to be in the array
 
 def main():
-    dpts = 40
+    dpts = 10
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
@@ -37,9 +37,10 @@ def main():
         l = length/dpts #how many datapoints to extract from the csv file
         l = math.trunc(l)
         print(l)
-        if l < length:
-            dpts = length
         print(dpts)
+        for i in dpts:
+            data.append(Array2d_result(i * dpts))
+        print(data)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
