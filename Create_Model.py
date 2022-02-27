@@ -44,6 +44,7 @@ def main():
             temp.append(Array2d_result[i * l])
         data.append(temp)
         print(len(data))
+        data = data.reshape(data.shape[0], -1) #3D array to 2D
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
