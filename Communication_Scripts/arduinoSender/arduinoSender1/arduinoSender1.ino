@@ -31,6 +31,6 @@ void loop(){
   Serial.print(az*10); Serial.print(",");
   Serial.print(gx*10); Serial.print(",");
   Serial.print(gy*10); Serial.print(",");
-  Serial.print(gz*10);
+  Serial.print(gz*10); Serial.print(",");
   delay(100);
 }
