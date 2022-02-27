@@ -6,6 +6,7 @@ import pickle
 import random
 import serial
 import numpy as np
+from time import sleep
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -20,10 +21,11 @@ dataMatrix =[]
 # #Generate an artificial move to see if the model answers correctly
 def main():
     while True:
-        dataMatrix =[]
+        print("hi")
         Button()
         recordedData = Record()
         print(model.predict([recordedData[0]]))
+        sleep(5)
     
             
 
@@ -211,6 +213,7 @@ def Record():
                     print("active")
                     if (button == 'H'):
                         temp = getResult(dataMatrix)
+                        print(temp)
                         return temp
                     num += 1
 
@@ -223,7 +226,7 @@ def getResult(mat):
         for j in range(len(mat)):
             col.append(int(float(mat[j][i])))
         
-        append = list_average(col)
+        append = int(list_average(col))
         print(append)
         compressedArr.append(append)
 
