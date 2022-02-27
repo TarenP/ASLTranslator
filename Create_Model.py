@@ -35,8 +35,8 @@ def main():
         # print(Array2d_result)
         #print(Array2d_result)
         # length = len(Array2d_result)
-        Array2d_result = getResult(Array2d_result)
-        print(Array2d_result)
+        data = getResult(Array2d_result)
+        print(data)
        # print(length)
     #     l = length/dpts #how many datapoints to extract from the csv file
     #     l = math.trunc(l)
