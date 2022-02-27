@@ -86,6 +86,7 @@ def Button():
                 gy = parsed2[9]
                 gz = parsed2[10]
                 button = parsed1[1]
+                print(button)
             if(button == 'H'): # If button has been pressed
                 print("pressed")
                 return
@@ -206,13 +207,13 @@ def Record():
                     else:
                         data = np.array([finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy])
                         dataMatrix = np.vstack((dataMatrix, data))
-                    print(dataMatrix)
+                    #print(dataMatrix)
                     # write a row to the csv file
-                    print("active")
+                    #print("active")
                     if (button == 'H'):
                         temp = []
                         temp.append(getResult(dataMatrix))
-                        print(temp)
+                        #print(temp)
                         return temp
                     num += 1
 
@@ -226,7 +227,7 @@ def getResult(mat):
             col.append(int(float(mat[j][i])))
         
         append = int(list_average(col))
-        print(append)
+        #print(append)
         compressedArr.append(append)
 
     return compressedArr
