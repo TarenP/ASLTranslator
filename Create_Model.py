@@ -31,7 +31,9 @@ def main():
                 #remove the filepath from the name
                 name = filename.replace("./Gesture_Database\\", "")
                 name = name.replace(".csv", "")
+                name = ''.join((x for x in name if not x.isdigit()))
                 target.append(name)
+                print(target)
 
     #split data into 20% test and 80% train
     x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
