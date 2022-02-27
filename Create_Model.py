@@ -40,7 +40,7 @@ def main():
         print(l)
         print(dpts)
         for i in range(dpts):
-            data.append(Array2d_result(i * dpts))
+            data.append(Array2d_result[i * dpts])
         print(data)
 
     #split data into 20% test and 80% train
