@@ -205,6 +205,7 @@ def Record(writer):
                         gz = parsed2[10]
                         button = parsed1[1]
                     data = [finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy, gz]
+                    print(gz)
                     # write a row to the csv file
                     writer.writerow(data)
                     if (button == 'H'):
