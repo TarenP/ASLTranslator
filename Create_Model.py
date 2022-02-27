@@ -109,8 +109,8 @@ def getResult(mat):
 
     for i in range(len(mat)):
         col = []
-    for j in range(len(mat[0])):
-        col.append(mat[j][i])
+        for j in range(len(mat[0])):
+            col.append(mat[i][j])
 
     # Compress all columns
     # to a single number 
