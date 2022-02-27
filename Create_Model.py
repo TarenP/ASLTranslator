@@ -37,7 +37,7 @@ def main():
         l = length/dpts #how many datapoints to extract from the csv file
         l = math.trunc(l)
         print(l)
-        if l > length:
+        if l < length:
             dpts = length
         print(dpts)
 
