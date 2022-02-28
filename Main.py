@@ -34,6 +34,7 @@ def main():
 def Button():
     global button
     while True:
+        print("high")
         if button == 'L':
             while True:
                 #get the difference between before and after move is performed for each sensor
