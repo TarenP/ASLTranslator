@@ -18,6 +18,7 @@ with open('model_pickle', 'rb') as f:
     model = pickle.load(f)
 
 dataMatrix =[]
+button = 'L'
 # #Generate an artificial move to see if the model answers correctly
 def main():
     Button()
@@ -29,6 +30,8 @@ def main():
 
 #Return True when button is pressed
 def Button():
+    while button == 'L':
+        break
     while True:
         #get the difference between before and after move is performed for each sensor
         print("Keep all fingers straight, and press button to start")
