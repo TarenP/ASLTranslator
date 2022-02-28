@@ -217,7 +217,7 @@ def Record():
                     if (button == 'H'):
                         temp = []
                         temp.append(getResult(dataMatrix))
-                        #print(temp)
+                        print(temp)
                         return temp
                     num += 1
 
