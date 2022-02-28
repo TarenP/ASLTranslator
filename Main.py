@@ -87,7 +87,6 @@ def Button():
                 gy = parsed2[9]
                 button = parsed1[1]
                 print(button)
-        print("high")
         if button == 'L':
             while True:
                 #get the difference between before and after move is performed for each sensor
