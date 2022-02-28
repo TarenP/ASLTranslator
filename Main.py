@@ -211,9 +211,9 @@ def Record():
                     else:
                         data = np.array([finger0, finger1, finger2, finger3, finger4, ax, ay, az, gx, gy])
                         dataMatrix = np.vstack((dataMatrix, data))
-                    #print(dataMatrix)
+                    print(dataMatrix)
                     # write a row to the csv file
-                    #print("active")
+                    print("active")
                     if (button == 'H'):
                         temp = []
                         temp.append(getResult(dataMatrix))
@@ -231,7 +231,7 @@ def getResult(mat):
             col.append(int(float(mat[j][i])))
         
         append = int(list_average(col))
-        #print(append)
+        print(append)
         compressedArr.append(append)
 
     return compressedArr
