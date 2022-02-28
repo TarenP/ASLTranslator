@@ -7,7 +7,10 @@ import random
 import serial
 import numpy as np
 from time import sleep
-import pyttsx
+# Import the required module for text 
+# to speech conversion
+from gtts import gTTS
+import os
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -22,14 +25,25 @@ dataMatrix =[]
 button = 'L'
 # #Generate an artificial move to see if the model answers correctly
 def main():
-    #initiate text to speech engine
-    engine = pyttsx.init()
+    # Language in which you want to convert
+    language = 'en'
     while True:
         print("hi")
         Button()
         recordedData = Record()
-        engine.say(model.predict([recordedData[0]]))
-        engine.runAndWait()
+        #initiate text to speech engine
+        # The text that you want to convert to audio
+        mytext = model.predict([recordedData[0]])
+        # Passing the text and language to the engine, 
+        # here we have marked slow=False. Which tells 
+        # the module that the converted audio should 
+        # have a high speed
+        myobj = gTTS(text=mytext, lang=language, slow=False)
+        # Saving the converted audio in a mp3 file named
+        # welcome 
+        myobj.save("Final.mp3")
+        # Playing the converted file
+        os.system("mpg321 Final.mp3")
         sleep(5)
 
             
