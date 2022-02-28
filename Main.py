@@ -49,7 +49,6 @@ def main():
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy() == True:
             continue
-        sleep(5)
 
             
 
