@@ -7,6 +7,7 @@ import random
 import serial
 import numpy as np
 from time import sleep
+import pyttsx
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -21,11 +22,14 @@ dataMatrix =[]
 button = 'L'
 # #Generate an artificial move to see if the model answers correctly
 def main():
+    #initiate text to speech engine
+    engine = pyttsx.init()
     while True:
         print("hi")
         Button()
         recordedData = Record()
-        print(model.predict([recordedData[0]]))
+        engine.say(model.predict([recordedData[0]]))
+        engine.runAndWait()
         sleep(5)
 
             
