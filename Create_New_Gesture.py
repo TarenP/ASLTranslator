@@ -261,7 +261,7 @@ def Record(writer):
                         gy = parsed2[9]
                         gz = parsed2[10]
                         button = parsed1[1]
-                    data = [int(finger0), int(finger1), int(finger2), int(finger3), int(finger4), int(ax), int(ay), int(az), int(gx), int(gy)]
+                    data = [float(finger0), float(finger1), float(finger2), float(finger3), float(finger4), float(ax), float(ay), float(az), float(gx), float(gy)]
                     print(data)
                     # write a row to the csv file
                     writer.writerow(data)
