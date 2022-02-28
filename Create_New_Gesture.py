@@ -20,7 +20,7 @@ ser2=serial.Serial("/dev/ttyACM1",9600)  #change ACM number as found from ls /de
 ser2.baudrate=9600
 
 def main():
-    num = input("Enter the amount of gesture trials(suggested amount is 20):\n")
+    num = input("Enter the amount of gesture trials(min 2):\n")
     num = int(num)
     name = input("What is the English translation of the gesture:\n")
     for i in range(num):
