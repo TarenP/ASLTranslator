@@ -21,10 +21,12 @@ dataMatrix =[]
 button = 'L'
 # #Generate an artificial move to see if the model answers correctly
 def main():
-    Button()
-    recordedData = Record()
-    print(model.predict([recordedData[0]]))
-    sleep(5)
+    while True:
+        print("hi")
+        Button()
+        recordedData = Record()
+        print(model.predict([recordedData[0]]))
+        sleep(5)
 
             
 
@@ -248,5 +250,4 @@ def list_average(num):
 # test.append(gesture)
 # print(model.predict([test[0]]))
 if __name__ == '__main__':
-    while True:
-        main()
+    main()
