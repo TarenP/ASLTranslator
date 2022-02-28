@@ -11,6 +11,7 @@ from time import sleep
 # to speech conversion
 from gtts import gTTS
 import os
+import pygame
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -27,13 +28,14 @@ button = 'L'
 def main():
     # Language in which you want to convert
     language = 'en'
+    pygame.mixer.init()
     while True:
         print("hi")
         Button()
         recordedData = Record()
         #initiate text to speech engine
         # The text that you want to convert to audio
-        mytext = model.predict([recordedData[0]])
+        mytext = str(model.predict([recordedData[0]]))
         # Passing the text and language to the engine, 
         # here we have marked slow=False. Which tells 
         # the module that the converted audio should 
@@ -43,7 +45,10 @@ def main():
         # welcome 
         myobj.save("Final.mp3")
         # Playing the converted file
-        os.system("mpg321 Final.mp3")
+        pygame.mixer.music.load("Final.mp3")
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy() == True:
+            continue
         sleep(5)
 
             
