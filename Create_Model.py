@@ -37,7 +37,7 @@ def main():
 
 
     #split data into 20% test and 80% train
-    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
+    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.35)
     # print(len(x_train))
     # print(len(x_test))
     
