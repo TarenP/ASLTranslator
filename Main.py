@@ -30,7 +30,6 @@ def main():
     language = 'en'
     pygame.mixer.init()
     while True:
-        print("hi")
         Button()
         recordedData = Record()
         #initiate text to speech engine
