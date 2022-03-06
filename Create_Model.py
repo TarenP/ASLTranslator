@@ -7,26 +7,30 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os,glob
 import pickle
+import pandas as pd
 
 
 #generate an artificial dataset
 data = []
 target =[]
+dfs = {}
+stat_df = {}
+#label columns
+columns = ["finger0", "finger1", "finger2", "finger3", "finger4", "ax", "ay", "az", "gx", "gy"]
 
 def main():
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
-        CSVData = open(filename)
-        Array2d_result = np.loadtxt(CSVData, delimiter=",")
-        
-        #remove the filepath from the name
+        dfs[f.split(".")[0]] = pd.read_csv(filename, names=columns)
+        dfs[f.split(".")[0]]['Label'] = np.array([f.split(".")[0]]*len(dfs[f.split(".")[0]]))  
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
-        target.append(name)
-        Array2d_result = getResult(Array2d_result)
-        data.append(Array2d_result)
-        print(data)
+        stat_df =stat_df.append(dfs[name])
+        print(stat_df)
+    Array2d_result = getResult(Array2d_result)
+    data.append(Array2d_result)
+    print(data)
 
 
     #split data into 20% test and 80% train
@@ -77,6 +81,7 @@ def getResult(mat):
             std = np.std(col)
             std_arr = np.bitwise_and(col <= (mean + std), col >= (mean - std))
             col[std_arr]
+        
         append = list_average(col)
         compressedArr.append(append)
 
