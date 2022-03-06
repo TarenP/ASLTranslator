@@ -300,6 +300,11 @@ def getResult(mat):
         for j in range(len(mat)):
             col.append(int(float(mat[j][i])))
         
+        mean = np.mean(col)
+        std = np.std(col)
+
+        col = np.bitwise_and(col <= (mean + std), col >= (mean - std))\
+        
         append = int(list_average(col))
         print(append)
         compressedArr.append(append)
