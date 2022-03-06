@@ -28,7 +28,12 @@ def main():
         direc = os.path.join(root_dir,f)
         dfs[f.split(".")[0]] = pd.read_csv(direc,names=columns)
         dfs[f.split(".")[0]]['Label'] = np.array([name]*len(dfs[f.split(".")[0]]))
-        stat_df = [stat_df.append(dfs[name])]
+        if i == 0:
+            first = name
+        elif i == 1:
+            stat_df = dfs[first].append(dfs[name])
+        else:
+            stat_df = stat_df.append(dfs[name])
         print(stat_df)
     Array2d_result = getResult(Array2d_result)
     data.append(Array2d_result)
