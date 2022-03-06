@@ -2,25 +2,18 @@
 This script is used for creating a new model from the data already in the database
 '''
 
-from time import sleep
-import random
-import csv
-from numpy import mod
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os,glob
 import pickle
-import math
 
 
 #generate an artificial dataset
 data = []
 target =[]
-l = 0 #the spacing that the elements need to be in the array
 
 def main():
-    dpts = 10
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
         CSVData = open(filename)
@@ -70,7 +63,6 @@ def getResult(mat):
             if std_arr[x]:
                 final_col.append(col[x])
         append = list_average(final_col)
-        print(append)
         compressedArr.append(append)
 
     return compressedArr
