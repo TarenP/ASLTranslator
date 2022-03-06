@@ -54,15 +54,22 @@ def getResult(mat):
     for i in range(len(mat[0])):
         col = []
         for j in range(len(mat)):
-            col.append(mat[j][i])
-        
-        if np.percentile(col,95) - np.percentile(col,5) > 300:
-            moving = True
+            col = np.append(col, mat[j][i])
+        #print(np.percentile(col,90) - np.percentile(col,10))
+        if i >= 5 and i <= 7: #accelerometer data
+            if np.percentile(col,90) - np.percentile(col,10) >= 2:
+                moving = True
+        if i >= 8: #gyro data
+            if np.percentile(col,90) - np.percentile(col,10) >= 150:
+                moving = True
+        if i <= 4: #Fingers data
+            if np.percentile(col,90) - np.percentile(col,10) >= 250:
+                moving = True
             
     for i in range(len(mat[0])):
         col = []
         for j in range(len(mat)):
-            col.append(mat[j][i])
+            col = np.append(col, mat[j][i])
         if moving:
             pass #don't filter data
         else:
