@@ -50,15 +50,26 @@ def getResult(mat):
     
     # Stores compressed array
     compressedArr = []
+    moving = False #tell if the gesture has a time axis or not
     for i in range(len(mat[0])):
         col = []
         for j in range(len(mat)):
             col.append(mat[j][i])
         
-        mean = np.mean(col)
-        std = np.std(col)
-        std_arr = np.bitwise_and(col <= (mean + std), col >= (mean - std))
-        col[std_arr]
+        if np.percentile(col,95) - np.percentile(col,5) > 300:
+            moving = True
+            
+    for i in range(len(mat[0])):
+        col = []
+        for j in range(len(mat)):
+            col.append(mat[j][i])
+        if moving:
+            pass #don't filter data
+        else:
+            mean = np.mean(col)
+            std = np.std(col)
+            std_arr = np.bitwise_and(col <= (mean + std), col >= (mean - std))
+            col[std_arr]
         append = list_average(col)
         compressedArr.append(append)
 
