@@ -37,7 +37,7 @@ def main():
 
 
     #split data into 20% test and 80% train
-    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.35)
+    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.2)
     # print(len(x_train))
     # print(len(x_test))
     
@@ -61,6 +61,12 @@ def getResult(mat):
         col = []
         for j in range(len(mat)):
             col.append(mat[j][i])
+        
+        mean = np.mean(col)
+        std = np.std(col)
+
+        col = np.bitwise_and(col <= (mean + std), col >= (mean - std))
+        print(col)
         
         append = list_average(col)
         print(append)
