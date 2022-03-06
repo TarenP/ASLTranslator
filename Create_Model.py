@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os,glob
 import pickle
+import csv
 
 
 #generate an artificial dataset
@@ -16,18 +17,18 @@ target =[]
 def main():
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
-        CSVData = open(filename)
-        Array2d_result = np.loadtxt(CSVData, delimiter=",")
         #remove the filepath from the name
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
-        for i, line in enumerate(CSVData):
-            print(line)
+        with open(filename, "r") as f:
+            CSVData = csv.reader(f, delimeter = "\t")
+            for i, line in enumerate(CSVData):
+                print(line)
         target.append(name)
         Array2d_result = getResult(Array2d_result)
         data.append(Array2d_result)
-        print(data)
+        #print(data)
 
 
     #split data into 20% test and 80% train
