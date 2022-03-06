@@ -26,7 +26,8 @@ def main():
         for i in Array2d_result:
             target.append(name)
             i = i.astype(int)
-            data.append(i)
+            ls = i.tolist()
+            data.append(ls)
         print(data)
 
 
