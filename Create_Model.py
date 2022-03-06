@@ -23,10 +23,11 @@ def main():
         name = ''.join((x for x in name if not x.isdigit()))
         with open(filename, "r") as f:
             CSVData = csv.reader(f)
-            for i, line in enumerate(CSVData):
+            for line in enumerate(CSVData):
+                line = line.astype(int)
                 target.append(name)
                 data.append(line)
-        #print(data)
+        print(data)
 
 
     #split data into 20% test and 80% train
