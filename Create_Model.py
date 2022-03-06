@@ -7,37 +7,27 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os,glob
 import pickle
-import pandas as pd
 
 
 #generate an artificial dataset
 data = []
 target =[]
-dfs = {}
-stat_df = {}
-#label columns
-root_dir ="/home/pi/Desktop/ASLTranslator/Gesture_Database"
-columns = ["finger0", "finger1", "finger2", "finger3", "finger4", "ax", "ay", "az", "gx", "gy"]
 
 def main():
-    i = 0
     #Go through every gesture's file in the database
-    for f in os.listdir(root_dir):
-        name = f.replace(".csv", "")
+    for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
+        CSVData = open(filename)
+        Array2d_result = np.loadtxt(CSVData, delimiter=",")
+        #remove the filepath from the name
+        name = filename.replace("./Gesture_Database/", "")
+        name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
-        direc = os.path.join(root_dir,f)
-        dfs[f.split(".")[0]] = pd.read_csv(direc,names=columns)
-        dfs[f.split(".")[0]]['Label'] = np.array([name]*len(dfs[f.split(".")[0]]))
-        if i == 0:
-            first = name
-        elif i == 1:
-            stat_df = dfs[first].append(dfs[name])
-        else:
-            stat_df = stat_df.append(dfs[name])
-        print(stat_df)
-    Array2d_result = getResult(Array2d_result)
-    data.append(Array2d_result)
-    print(data)
+        for i, line in enumerate(CSVData):
+            print(line)
+        target.append(name)
+        Array2d_result = getResult(Array2d_result)
+        data.append(Array2d_result)
+        print(data)
 
 
     #split data into 20% test and 80% train
