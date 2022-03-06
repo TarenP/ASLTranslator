@@ -16,17 +16,19 @@ target =[]
 dfs = {}
 stat_df = {}
 #label columns
+root_dir ="/home/pi/Desktop/ASLTranslator/Gesture_Database"
 columns = ["finger0", "finger1", "finger2", "finger3", "finger4", "ax", "ay", "az", "gx", "gy"]
 
 def main():
+    i = 0
     #Go through every gesture's file in the database
-    for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
-        dfs[f.split(".")[0]] = pd.read_csv(filename, names=columns)
-        dfs[f.split(".")[0]]['Label'] = np.array([f.split(".")[0]]*len(dfs[f.split(".")[0]]))  
-        name = filename.replace("./Gesture_Database/", "")
-        name = name.replace(".csv", "")
+    for f in os.listdir(root_dir):
+        name = f.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
-        stat_df =stat_df.append(dfs[name])
+        direc = os.path.join(root_dir,f)
+        dfs[f.split(".")[0]] = pd.read_csv(direc,names=columns)
+        dfs[f.split(".")[0]]['Label'] = np.array([name]*len(dfs[f.split(".")[0]]))
+        stat_df = [stat_df.append(dfs[name])]
         print(stat_df)
     Array2d_result = getResult(Array2d_result)
     data.append(Array2d_result)
