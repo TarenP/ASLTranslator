@@ -59,16 +59,17 @@ def getResult(mat):
     compressedArr = []
     for i in range(len(mat[0])):
         col = []
+        final_col = []
         for j in range(len(mat)):
             col.append(mat[j][i])
         
         mean = np.mean(col)
         std = np.std(col)
-
-        col = np.bitwise_and(col <= (mean + std), col >= (mean - std))
-        print(col)
-        
-        append = list_average(col)
+        std_arr = np.bitwise_and(col <= (mean + std), col >= (mean - std))
+        for x in range(len(std_arr)):
+            if std_arr[x]:
+                final_col.append(col[x])
+        append = list_average(final_col)
         print(append)
         compressedArr.append(append)
 
