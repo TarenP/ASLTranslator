@@ -24,7 +24,7 @@ def main():
         with open(filename, "r") as f:
             CSVData = csv.reader(f)
             for line in enumerate(CSVData):
-                line = line.astype(int)
+                line =[int(line) for i in line]
                 target.append(name)
                 data.append(line)
         print(data)
