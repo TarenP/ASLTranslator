@@ -23,10 +23,9 @@ def main():
     num = input("Enter the amount of gesture trials(min 2):\n")
     num = int(num)
     name = input("What is the English translation of the gesture:\n")
-    ismoving = input("Is this a moving gesture?(y or n)\n")
-    if ismoving == "y":
-        moving = "True"
-    else:
+    moving = input("Is this a moving gesture?(True or n)\n")
+    if moving != "True":
+        print("not a moving gesture")
         moving = ""
     for i in range(num):
         with open("Gesture_Database/" + str(name) + str(moving) + str(i) +".csv", 'w', newline='', encoding='UTF8') as f:
