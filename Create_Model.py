@@ -7,7 +7,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os,glob
 import pickle
-import sklearn.preprocessing as preprocessing
 
 
 #generate an artificial dataset
@@ -37,12 +36,9 @@ def main():
     # print(len(x_train))
     # print(len(x_test))
     
-    min_max_scaler = preprocessing.MinMaxScaler()
-    X_train_minmax = min_max_scaler.fit_transform(x_train)
-    
-    model = LogisticRegression(max_iter = 1e10)
+    model = LogisticRegression(max_iter = 1e1000000)
     #train model
-    model.fit(X_train_minmax, y_train)
+    model.fit(x_train, y_train)
     #print the accuracy of model against the test data
     print(model.score(x_test, y_test))
     
