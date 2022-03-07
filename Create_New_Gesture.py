@@ -25,9 +25,9 @@ def main():
     name = input("What is the English translation of the gesture:\n")
     ismoving = input("Is this a moving gesture?(y or n)\n")
     if ismoving == "y":
-        moving = True
+        moving = "True"
     else:
-        moving = False
+        moving = ""
     for i in range(num):
         with open("Gesture_Database/" + str(name) + str(moving) + str(i) +".csv", 'w', newline='', encoding='UTF8') as f:
             # create the csv writer

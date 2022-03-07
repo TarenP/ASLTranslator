@@ -23,11 +23,8 @@ def main():
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
-        try:
-            moving = name.replace("True", "")
-        except:
-            moving = name.replace("False", "")
-        if moving == "True":
+        if "True" in name:   
+            name = name.replace("True", "")
             temp = getResult(Array2d_result)
             data.append(temp)
             target.append(name)
@@ -61,33 +58,11 @@ def getResult(mat):
     
     # Stores compressed array
     compressedArr = []
-    moving = False #tell if the gesture has a time axis or not
-    for i in range(len(mat[0])):
-        col = []
-        for j in range(len(mat)):
-            col = np.append(col, mat[j][i])
-        #print(np.percentile(col,90) - np.percentile(col,10))
-        if i >= 5 and i <= 7: #accelerometer data
-            if np.percentile(col,90) - np.percentile(col,10) >= 4:
-                moving = True
-        if i >= 8: #gyro data
-            if np.percentile(col,90) - np.percentile(col,10) >= 200:
-                moving = True
-        if i <= 4: #Fingers data
-            if np.percentile(col,90) - np.percentile(col,10) >= 300:
-                moving = True
             
     for i in range(len(mat[0])):
         col = []
         for j in range(len(mat)):
             col = np.append(col, mat[j][i])
-        if moving:
-            pass #don't filter data
-        else:
-            mean = np.mean(col)
-            std = np.std(col)
-            std_arr = np.bitwise_and(col <= (mean + std), col >= (mean - std))
-            col[std_arr]
         append = list_average(col)
         compressedArr.append(append)
 
