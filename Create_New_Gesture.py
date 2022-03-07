@@ -23,8 +23,13 @@ def main():
     num = input("Enter the amount of gesture trials(min 2):\n")
     num = int(num)
     name = input("What is the English translation of the gesture:\n")
+    ismoving = input("Is this a moving gesture?(y or n)\n")
+    if ismoving == "y":
+        moving = True
+    else:
+        moving = False
     for i in range(num):
-        with open("Gesture_Database/" + str(name) + str(i) +".csv", 'w', newline='', encoding='UTF8') as f:
+        with open("Gesture_Database/" + str(name) + str(moving) + str(i) +".csv", 'w', newline='', encoding='UTF8') as f:
             # create the csv writer
             writer = csv.writer(f)
             

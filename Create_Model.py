@@ -23,11 +23,20 @@ def main():
         name = filename.replace("./Gesture_Database/", "")
         name = name.replace(".csv", "")
         name = ''.join((x for x in name if not x.isdigit()))
-        for i in Array2d_result:
+        try:
+            moving = name.replace("True", "")
+        except:
+            moving = name.replace("False", "")
+        if moving == "True":
+            temp = getResult(Array2d_result)
+            data.append(temp)
             target.append(name)
-            i = i.astype(int)
-            ls = i.tolist()
-            data.append(ls)
+        else:
+            for i in Array2d_result:
+                target.append(name)
+                i = i.astype(int)
+                ls = i.tolist()
+                data.append(ls)
         print(data)
 
 
