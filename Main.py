@@ -3,15 +3,15 @@ Main script that is used for the ASL translations
 '''
 
 import pickle
-import random
 import serial
 import numpy as np
 from time import sleep
 # Import the required module for text 
 # to speech conversion
 from gtts import gTTS
-import os
 import pygame
+import statistics
+from statistics import mode
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -32,14 +32,17 @@ def main():
     while True:
         Button()
         recordedData = Record()
-        #initiate text to speech engine
-        # The text that you want to convert to audio
-        mytext = str(model.predict([recordedData[0]]))
+        predictions = []
+        for i in recordedData:
+            #initiate text to speech engine
+            # The text that you want to convert to audio
+            mytext = str(model.predict([i]))
+            predictions.append(mytext)
         # Passing the text and language to the engine, 
         # here we have marked slow=False. Which tells 
         # the module that the converted audio should 
         # have a high speed
-        myobj = gTTS(text=mytext, lang=language, slow=False)
+        myobj = gTTS(text=str(most_common(predictions)), lang=language, slow=False)
         # Saving the converted audio in a mp3 file named
         # welcome 
         myobj.save("Final.mp3")
@@ -285,10 +288,10 @@ def Record():
                     # write a row to the csv file
                     print("active")
                     if (button == 'H'):
-                        temp = []
-                        temp.append(getResult(dataMatrix))
-                        print(temp)
-                        return temp
+                        #temp = []
+                        #temp.append(getResult(dataMatrix))
+                        #print(temp)
+                        return dataMatrix
                     num += 1
 
 def getResult(mat):
@@ -335,9 +338,9 @@ def list_average(num):
 
     avg = sum_num / len(num)
     return avg
-# gesture = [thumbF, indexF, middleF, ringF, pinkyF, ax, ay, az, gx, gy, gz]
-# test=[]
-# test.append(gesture)
-# print(model.predict([test[0]]))
+
+def most_common(List):
+    return(mode(List))
+
 if __name__ == '__main__':
     main()
