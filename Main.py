@@ -3,15 +3,15 @@ Main script that is used for the ASL translations
 '''
 
 import pickle
+import random
 import serial
 import numpy as np
 from time import sleep
 # Import the required module for text 
 # to speech conversion
 from gtts import gTTS
+import os
 import pygame
-import statistics
-from statistics import mode
 
 #Serial Addresses
 ser1=serial.Serial("/dev/ttyACM0",9600)  #change ACM number as found from ls /dev/tty/ACM*
@@ -32,17 +32,14 @@ def main():
     while True:
         Button()
         recordedData = Record()
-        predictions = []
-        for i in recordedData:
-            #initiate text to speech engine
-            # The text that you want to convert to audio
-            mytext = str(model.predict([i]))
-            predictions.append(mytext)
+        #initiate text to speech engine
+        # The text that you want to convert to audio
+        mytext = str(model.predict([recordedData[0]]))
         # Passing the text and language to the engine, 
         # here we have marked slow=False. Which tells 
         # the module that the converted audio should 
         # have a high speed
-        myobj = gTTS(text=str(most_common(predictions)), lang=language, slow=False)
+        myobj = gTTS(text=mytext, lang=language, slow=False)
         # Saving the converted audio in a mp3 file named
         # welcome 
         myobj.save("Final.mp3")
@@ -288,10 +285,10 @@ def Record():
                     # write a row to the csv file
                     print("active")
                     if (button == 'H'):
-                        #temp = []
-                        #temp.append(getResult(dataMatrix))
-                        #print(temp)
-                        return dataMatrix
+                        temp = []
+                        temp.append(getResult(dataMatrix))
+                        print(temp)
+                        return temp
                     num += 1
 
 def getResult(mat):
@@ -299,33 +296,15 @@ def getResult(mat):
     
     # Stores compressed array
     compressedArr = []
-    moving = False #tell if the gesture has a time axis or not
-    for i in range(len(mat[0])):
-        col = []
-        for j in range(len(mat)):
-            col = np.append(col, int(float(mat[j][i])))
-        #print(np.percentile(col,90) - np.percentile(col,10))
-        if i >= 5 and i <= 7: #accelerometer data
-            if np.percentile(col,90) - np.percentile(col,10) >= 4:
-                moving = True
-        if i >= 8: #gyro data
-            if np.percentile(col,90) - np.percentile(col,10) >= 200:
-                moving = True
-        if i <= 4: #Fingers data
-            if np.percentile(col,90) - np.percentile(col,10) >= 300:
-                moving = True
             
     for i in range(len(mat[0])):
         col = []
         for j in range(len(mat)):
             col = np.append(col, int(float(mat[j][i])))
-        if moving:
-            pass #don't filter data
-        else:
-            mean = np.mean(col)
-            std = np.std(col)
-            std_arr = np.bitwise_and(col <= (mean + std), col >= (mean - std))
-            col[std_arr]
+        mean = np.mean(col)
+        std = np.std(col)
+        std_arr = np.bitwise_and(col <= (mean + std), col >= (mean - std))
+        col = col[std_arr]
         append = list_average(col)
         compressedArr.append(append)
 
@@ -338,9 +317,9 @@ def list_average(num):
 
     avg = sum_num / len(num)
     return avg
-
-def most_common(List):
-    return(mode(List))
-
+# gesture = [thumbF, indexF, middleF, ringF, pinkyF, ax, ay, az, gx, gy, gz]
+# test=[]
+# test.append(gesture)
+# print(model.predict([test[0]]))
 if __name__ == '__main__':
     main()
