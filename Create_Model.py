@@ -49,7 +49,7 @@ def main():
             dataGY.append([ls[9]])
     datasets = [dataPI, dataR, dataM, dataPO, dataT, dataAX, dataAY, dataAZ, dataGX, dataGY]
     
-    for i in len(datasets):
+    for i in range(len(datasets)):
         #split data into 25% test and 80% train
         x_train, x_test, y_train, y_test = train_test_split(datasets[i], target, test_size= 0.25)
         # print(len(x_train))
