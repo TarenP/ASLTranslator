@@ -37,21 +37,21 @@ def main():
             target.append(name)
             i = i.astype(int)
             ls = i.tolist()
-            dataPI.append(ls[0])
-            dataR.append(ls[1])
-            dataM.append(ls[2])
-            dataPO.append(ls[3])
-            dataT.append(ls[4])
-            dataAX.append(ls[5])
-            dataAY.append(ls[6])
-            dataAZ.append(ls[7])
-            dataGX.append(ls[8])
-            dataGY.append(ls[9])
+            dataPI.append([ls[0]])
+            dataR.append([ls[1]])
+            dataM.append([ls[2]])
+            dataPO.append([ls[3]])
+            dataT.append([ls[4]])
+            dataAX.append([ls[5]])
+            dataAY.append([ls[6]])
+            dataAZ.append([ls[7]])
+            dataGX.append([ls[8]])
+            dataGY.append([ls[9]])
     datasets = [dataPI, dataR, dataM, dataPO, dataT, dataAX, dataAY, dataAZ, dataGX, dataGY]
     
     for i in len(datasets):
         #split data into 25% test and 80% train
-        x_train, x_test, y_train, y_test = train_test_split(datasets(i), target, test_size= 0.25)
+        x_train, x_test, y_train, y_test = train_test_split(datasets[i], target, test_size= 0.25)
         # print(len(x_train))
         # print(len(x_test))
         
