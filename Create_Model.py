@@ -23,7 +23,6 @@ dataGX = []
 dataGY = []
 target =[]
 
-datasets = ['dataPI', 'dataR', 'dataM', 'dataPO', 'dataT', 'dataAX', 'dataAY', 'dataAZ', 'dataGX', 'dataGY']
 def main():
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
@@ -48,10 +47,11 @@ def main():
             dataAZ.append(ls[7])
             dataGX.append(ls[8])
             dataGY.append(ls[9])
-
-    for i in datasets:
+    datasets = [dataPI, dataR, dataM, dataPO, dataT, dataAX, dataAY, dataAZ, dataGX, dataGY]
+    
+    for i in len(datasets):
         #split data into 25% test and 80% train
-        x_train, x_test, y_train, y_test = train_test_split(i, target, test_size= 0.25)
+        x_train, x_test, y_train, y_test = train_test_split(datasets(i), target, test_size= 0.25)
         # print(len(x_train))
         # print(len(x_test))
         
