@@ -5,6 +5,7 @@ This script is used for creating a new model from the data already in the databa
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
 import os,glob
 import pickle
 
@@ -36,7 +37,8 @@ def main():
     # print(len(x_train))
     # print(len(x_test))
     
-    model = LogisticRegression(max_iter = 1e1000000)
+    #model = LogisticRegression(max_iter = 1e1000000)
+    model = GaussianNB()
     #train model
     model.fit(x_train, y_train)
     #print the accuracy of model against the test data
