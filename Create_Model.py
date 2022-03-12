@@ -11,9 +11,19 @@ import pickle
 
 
 #generate an artificial dataset
-data = []
+dataPI = []
+dataR = []
+dataM = []
+dataPO = []
+dataT = []
+dataAX = []
+dataAY = []
+dataAZ = []
+dataGX = []
+dataGY = []
 target =[]
 
+datasets = ['dataPI', 'dataR', 'dataM', 'dataPO', 'dataT', 'dataAX', 'dataAY', 'dataAZ', 'dataGX', 'dataGY']
 def main():
     #Go through every gesture's file in the database
     for filename in glob.glob(os.path.join('./Gesture_Database', '*.csv')):
@@ -28,24 +38,32 @@ def main():
             target.append(name)
             i = i.astype(int)
             ls = i.tolist()
-            data.append(ls)
-        print(data)
+            dataPI.append(ls[0])
+            dataR.append(ls[1])
+            dataM.append(ls[2])
+            dataPO.append(ls[3])
+            dataT.append(ls[4])
+            dataAX.append(ls[5])
+            dataAY.append(ls[6])
+            dataAZ.append(ls[7])
+            dataGX.append(ls[8])
+            dataGY.append(ls[9])
 
-
-    #split data into 20% test and 80% train
-    x_train, x_test, y_train, y_test = train_test_split(data, target, test_size= 0.25)
-    # print(len(x_train))
-    # print(len(x_test))
-    
-    #model = LogisticRegression(max_iter = 1e1000000)
-    model = GaussianNB()
-    #train model
-    model.fit(x_train, y_train)
-    #print the accuracy of model against the test data
-    print(model.score(x_test, y_test))
-    
-    with open('model_pickle', 'wb') as f:
-        pickle.dump(model, f)
+    for i in datasets:
+        #split data into 25% test and 80% train
+        x_train, x_test, y_train, y_test = train_test_split(i, target, test_size= 0.25)
+        # print(len(x_train))
+        # print(len(x_test))
+        
+        #model = LogisticRegression(max_iter = 1e1000000)
+        model = GaussianNB()
+        #train model
+        model.fit(x_train, y_train)
+        #print the accuracy of model against the test data
+        print(model.score(x_test, y_test))
+        
+        with open('model_pickle', 'wb') as f:
+            pickle.dump(model, f)
 
 
     # Function to compress
