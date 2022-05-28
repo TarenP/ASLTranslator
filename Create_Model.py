@@ -37,8 +37,8 @@ def main():
     # print(len(x_train))
     # print(len(x_test))
     
-    #model = LogisticRegression(max_iter = 1e1000000)
-    model = GaussianNB()
+    model = LogisticRegression(max_iter = 1e1000000)
+    #model = GaussianNB()
     #train model
     model.fit(x_train, y_train)
     #print the accuracy of model against the test data
